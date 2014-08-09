@@ -1,4 +1,4 @@
-@ECHO OFF & CLS
+@ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
 
 
@@ -78,10 +78,10 @@ SET myerrlvl=0
 ECHO/^>^> SOURCE: %~NX1
 IF EXIST "%mp4boxoutput%\%prefix%%~N1%suffix%.mp4" (
     IF %overwrite% EQU 0 (
-        ECHO/^>^> Target exists^^! skip.
+        ECHO/^>^> Target exists^^! Skip.
         GOTO:EOF
     ) ELSE (
-        ECHO/^>^> Target exists^^! overwrite...
+        ECHO/^>^> Target exists^^! Overwrite...
     )
 )
 
@@ -125,14 +125,6 @@ ENDLOCAL
 GOTO:EOF
 :: here
 
-CALL:flvext "%~1"
-IF %myerrlvl% EQU 0 (
-    CALL:mp4box "%~1"
-)
-ECHO Cleaning FLVExtract output folder...
-IF EXIST "%flvexoutput%\%~n1.264" del/q/f "%flvexoutput%\%~n1.264"
-IF EXIST "%flvexoutput%\%~n1.aac" del/q/f "%flvexoutput%\%~n1.aac"
-GOTO:EOF
 REM ============================================================================
 :multiout       -- redirect command's output to multiple ways
 ::              -- %~1: get the string you wanna output,
@@ -167,7 +159,7 @@ IF NOT EXIST "%exefull%".       (ECHO/^>^> Cannot find exe file %exename%. & GOT
 IF NOT EXIST "%~1".             (ECHO/^>^> Cannot find source flv file. & GOTO:eoFunc)
 IF "%outputFolder%" EQU ""      (SET "outputFolder=%~SDP1" && SET "outputFolder=!outputFolder:~0,-1!")
 IF NOT EXIST "%outputFolder%".  (ECHO/^>^> Cannot find output folder. & GOTO:eoFunc)
-IF /I "%~X1" NEQ ".flv"         (ECHO/^>^> File format error. & GOTO:eoFunc)
+REM IF /I "%~X1" NEQ ".flv"         (ECHO/^>^> File format error. & GOTO:eoFunc)
 
 SET "truerate="
 SET "averrate="
@@ -249,43 +241,9 @@ REM ============================================================================
 :promptpause
 :lblpromptpause
 IF "%~1" NEQ "" (
-  ECHO %~1
-  shift
-  GOTO:lblpromptpause
+    ECHO %~1
+    shift
+    GOTO:lblpromptpause
 )
 pause >nul 2>nul
 GOTO:EOF
-REM REM ============================================================================
-REM :flvext
-REM SET myerrlvl=0
-REM IF "%~1" == "" (
-REM     SET myerrlvl=-1
-REM     GOTO:EOF
-REM )
-REM ECHO Extracting flv file...
-REM %flvexpath%\FLVExtractCL.exe -v -a -o -d "%flvexoutput%" "%~1" >nul 2>nul || (
-REM     SET myerrlvl=-1
-REM )
-REM IF %myerrlvl% EQU 0 (
-REM     ECHO Success^^!
-REM ) else (
-REM     ECHO Fail^^!
-REM )
-REM GOTO:EOF
-REM REM ============================================================================
-REM :mp4box
-REM SET myerrlvl=0
-REM IF "%~1" == "" (
-REM   SET myerrlvl=-1
-REM   GOTO:EOF
-REM )
-REM ECHO Remuxing to mp4 file...
-REM %mp4boxpath%\MP4Box.exe -add "%flvexoutput%\%~n1.264" -add "%flvexoutput%\%~n1.aac" -new "%mp4boxoutput%\%~n1.mp4" >nul 2>nul || (
-REM   SET myerrlvl=-1
-REM )
-REM IF %myerrlvl% EQU 0 (
-REM   ECHO Success^^!
-REM ) else (
-REM   ECHO Fail^^!
-REM )
-REM GOTO:EOF

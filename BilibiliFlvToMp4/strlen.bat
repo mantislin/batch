@@ -1,4 +1,3 @@
-echo off & cls
 setlocal EnableDelayedExpansion
 SET "myString=."
 call :strlen "result","%myString%"

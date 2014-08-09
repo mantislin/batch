@@ -23,6 +23,11 @@ if exist "%AppData%\Mozilla-%un%" (
     ren "Mozilla-%un%" "Mozilla"
     popd
     pushd "%AppData%\..\Local"
+    taskkill /im evernote.exe /f >nul 2>nul
+    ren "Evernote" "Evernote-!cun!"
+    ren "Evernote-%un%" "Evernote"
+    popd
+    pushd "%AppData%\..\Local"
     taskkill /im chrome.exe /f >nul 2>nul
     ren "Google" "Google-!cun!"
     ren "Google-%un%" "Google"
