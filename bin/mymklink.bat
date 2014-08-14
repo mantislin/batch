@@ -221,7 +221,7 @@ goto :eof
                     set "chr1=!arg1:~0,1!"
                     set "arg1=!arg1:~1!"
 
-                    rem ====================================================
+                    rem ==============================
                     set "isOrgArg=0"
                     if /i "!chr1!" == "R" (
                         set "toMoveDir=1"
@@ -239,7 +239,7 @@ goto :eof
                     if "!isOrgArg!" == "1" (
                         set "orgArgs=!orgArgs! /!chr1!"
                     )
-                    rem ====================================================
+                    rem ==============================
 
                     goto:loop_makelink_1_1
                 )
@@ -248,6 +248,15 @@ goto :eof
         if not "%~1" == "" goto :loop_makelink_1
     )
     call trimleft "orgArgs" "%orgArgs%"
+
+    if "%link%" == "" (
+        echo/The syntax of the command is incorrect.
+        goto :eoa
+    )
+    if "%target%" == "" (
+        echo/The syntax of the command is incorrect.
+        goto :eoa
+    )
 
     if exist "%link%" (
         if "!toMoveDir!" == "1" set "toMove=1"
