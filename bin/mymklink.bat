@@ -2,6 +2,7 @@
 ::              -- /R       If the link file already exists and is a dorectory, and the target is a directory, then move it's contents to target, and then delete it. (implies /F)
 ::              -- /H       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
+::              -- /S       If this feature set, this script will not gonna make link for Target <<===>> Link, but make links for Target\* <<===>> Link\*, except it is fetched by the ignore list in config file.
 ::
 ::              -- /D       Creates a directory symbolic link. Default is a file symbolic link.
 ::              -- /H       Creates a hard link instead of a symbolic link.
@@ -11,21 +12,216 @@
     @echo off
     setlocal enabledelayedexpansion
 
+    set "toMakeDirLink=0"
+    :loop_mymklink_1
+        if "%~1" == "" goto:done_mymklink_1
+        if not "%~1" == "" (
+            set "arg1=%~1"
+            if "!arg1:~0,1!" == "/" (
+                set "arg1=!arg1:~1!"
+                :loop_mymklink_1_1
+                    if not "!arg1!" == "" (
+                        set "chr1=!arg1:~0,1!"
+                        set "arg1=!arg1:~1!"
+
+                        if /i "!chr1!" == "S" (
+                            set "toMakeDirLink=1"
+                            goto done_mymklink_1
+                        )
+
+                        goto:loop_mymklink_1_1
+                    )
+            )
+            shift
+        )
+        goto:loop_mymklink_1
+    :done_mymklink_1
+
+    if "%toMakeDirLink%" == "1" (
+        call :mkdirlink %*
+    ) else (
+        call :makelink %*
+    )
+
+    :eoa
+    endlocal
+goto:eof
+:: =============================================================================
+:mkdirlink      -- Make links for all files and dirs in one dir to another dir.
+::                  For subfiles, link type can be [symbolic link (default) | hard link].
+::                  For subfolders, link type can be [directory symbolic link (default) | directory junction].
+::              -- /D       Create a directory symbolic link for each subfolder.
+::              -- /H       Creates a hard link instead of a symbolic link for each subfile.
+::              -- /J       Create Directory Junction for each subfolder.
+::              -- Link     The source dir.
+::              -- Target   The target dir.
+    @echo off
+    setlocal enabledelayedexpansion
+
+    set "orgArgsForFile="
+    set "orgArgsForDir="
+    set "orgArgs="
+    set "link="
+    set "target="
+    :loop_mkdirlink_1
+        if "%~1" == "" goto:done_mkdirlink_1
+        if not "%~1" == "" (
+            set "arg1=%~1"
+            if not "!arg1:~0,1!" == "/" (
+                if "!link!" == "" (
+                    set "link=!arg1!"
+                ) else if "!target!" == "" (
+                    set "target=!arg1!"
+                )
+            ) else (
+                set "arg1=!arg1:~1!"
+                :loop_mkdirlink_1_1
+                    if not "!arg1!" == "" (
+                        set "chr1=!arg1:~0,1!"
+                        set "arg1=!arg1:~1!"
+
+                        if /i "!chr1!" == "D" (
+                            set "orgArgsForDir=!orgArgsForDir! /!chr1!"
+                        ) else if /i "!chr1!" == "H" (
+                            set "orgArgsForFile=!orgArgsForFile! /!chr1!"
+                        ) else if /i "!chr1!" == "J" (
+                            set "orgArgsForDir=!orgArgsForDir! /!chr1!"
+                        ) else (
+                            set "orgArgs=!orgArgs! /!chr1!"
+                        )
+
+                        goto:loop_mkdirlink_1_1
+                    )
+            )
+            shift
+        )
+        goto:loop_mkdirlink_1
+    :done_mkdirlink_1
+
+    if "%link%" == "" (
+        echo/The syntax of the command is incorrect.
+        goto :eoa
+    )
+    if "%target%" == "" (
+        echo/The syntax of the command is incorrect.
+        goto :eoa
+    )
+    if not exist "%link%" (
+        echo/The system cannot find the path "%link%".
+        goto :eoa
+    )
+    if not exist "%target%" (
+        echo/The system cannot find the path "%target%".
+        goto :eoa
+    )
+
+    echo/%orgArgsForDir% | findstr /i /r "\/D \/J">nul 2>nul
+    if errorlevel 1 set "orgArgsForDir=%orgArgsForDir% /D"
+    call trimleft "orgArgsForFile" "%orgArgsForFile%"
+    call trimleft "orgArgsForDir" "%orgArgsForDir%"
+    call trimleft "orgArgs" "%orgArgs%"
+    if "%link:~-1%" == "\" set "link=%link:~0,-1%"
+    if "%target:~-1%" == "\" set "target=%target:~0,-1%"
+
+    set "config=%~dpn0.ini"
+    set "ignoreset="
+    if exist "%config%" (
+        for /f "usebackq tokens=* delims= eol=#" %%a in ("%config%") do (
+            set "ignoreitem=%%a"
+            set "ignoreitem=!ignoreitem:.=\.!"
+            set "ignoreitem=!ignoreitem:[=\[!"
+            set "ignoreitem=!ignoreitem:]=\]!"
+            set "ignoreitem=!ignoreitem:^^=\^]!"
+            set "ignoreitem=!ignoreitem:$=\$]!"
+            set "ignoreset=!ignoreset! "!ignoreitem!""
+        )
+
+        set num=0
+        :loop_replace_asterisk :: this is a loop to replace "*" with ".*"
+            set /a plusone=%num%+1
+            if "!ignoreset:~%num%,1!" == "*" set "ignoreset=!ignoreset:~0,%num%!.^*!ignoreset:~%plusone%!"
+            set /a num=%num%+2
+        if not "!ignoreset:~%num%,1!" == "" goto :loop_replace_asterisk
+    )
+
+    for /f "tokens=*" %%a in ('dir/b/ad "%target%"') do (
+        call :isIgnored "ignored" "%%~dpnxa" "%ignoreset%"
+        if "!ignored!" == "0" (
+            echo/Making link "%link%\%%~nxa" ^<^<===^>^> "%target%\%%~nxa" ......
+            call :makelink %orgArgs% %orgArgsForDir% "%link%\%%~nxa" "%target%\%%~nxa"
+        )
+    )
+    for /f "tokens=*" %%a in ('dir/b/a-d "%target%"') do (
+        call :isIgnored "ignored" "%%~dpnxa" "%ignoreset%"
+        if "!ignored!" == "0" (
+            echo/Making link "%link%\%%~nxa" ^<^<===^>^> "%target%\%%~nxa" ......
+            call :makelink %orgArgs% %orgArgsForFile% "%link%\%%~nxa" "%target%\%%~nxa"
+        )
+    )
+
+    :eoa
+    endlocal
+goto :eof
+:: =============================================================================
+:isIgnored  -- To check ignore list for argument and return result.
+::          -- %~1:     Output variable.
+::                      1:  return 1 means it is in the ignore list.
+::                      0:  return 0 means it is not in the ignore list.
+::          -- %~2:     The string to check by the ignore list.
+::          -- %~3,*:   From the third argument there is the argument list.
+    @echo off
+    setlocal
+
+    set "result=0"
+    :loop_ignoreset_1
+        echo/%~2 | findstr /r /i "%~3">nul 2>nul
+        if %errorlevel% equ 0 set "result=1"
+
+        shift/3
+    if "%~3" neq "" if %result% equ 0 goto :loop_ignoreset_1
+
+    (endlocal
+        if  "%~1" NEQ "" set "%~1=%result%"
+    )
+goto :eof
+:: =============================================================================
+:makelink       -- My make link
+::              -- /R       If the link file already exists and is a dorectory, and the target is a directory, then move it's contents to target, and then delete it. (implies /F)
+::              -- /H       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
+::              -- /F       If the link file already exists, delete it without ask.
+::
+::              -- /D       Creates a directory symbolic link. Default is a file symbolic link.
+::              -- /H       Creates a hard link instead of a symbolic link.
+::              -- /J       Creates a Directory Junction.
+::              -- Link     specifies the new symbolic link name.
+::              -- Target   specifies the path (relative or absolute) that the new link refers to.
+::              -- Notice that when trying to create symbolic link or directory symbolic link, and if the target is a relative path, it will be changed to absolute path automatically.
+    @echo off
+    setlocal enabledelayedexpansion
+
     set "toDelete=0"
     set "toMove=0"
     set "toMoveDir=0"
-
-    :loop1
-        if "%~1" == "" goto:done1
+    set "orgArgs="
+    set "link="
+    set "target="
+    :loop_makelink_1
+    if not "%~1" == "" (
         set "arg1=%~1"
-        if "!arg1:~0,1!" == "/" (
+        if not "!arg1:~0,1!" == "/" (
+            if "!link!" == "" (
+                set "link=!arg1!"
+            ) else if "!target!" == "" (
+                set "target=!arg1!"
+            )
+        ) else (
             set "arg1=!arg1:~1!"
-            :loop2
+            :loop_makelink_1_1
                 if not "!arg1!" == "" (
                     set "chr1=!arg1:~0,1!"
                     set "arg1=!arg1:~1!"
 
-                    rem ========================================================
+                    rem ====================================================
                     set "isOrgArg=0"
                     if /i "!chr1!" == "R" (
                         set "toMoveDir=1"
@@ -43,20 +239,15 @@
                     if "!isOrgArg!" == "1" (
                         set "orgArgs=!orgArgs! /!chr1!"
                     )
-                    rem ========================================================
+                    rem ====================================================
 
-                    goto:loop2
+                    goto:loop_makelink_1_1
                 )
-        ) else (
-            if "!link!" == "" (
-                set "link=!arg1!"
-            ) else if "!target!" == "" (
-                set "target=!arg1!"
-            )
         )
         shift
-        goto:loop1
-    :done1
+        if not "%~1" == "" goto :loop_makelink_1
+    )
+    call trimleft "orgArgs" "%orgArgs%"
 
     if exist "%link%" (
         if "!toMoveDir!" == "1" set "toMove=1"
@@ -161,8 +352,18 @@
         )
     )
 
+    set "toUseFullPath=0"
+    if "%orgArgs%" == "" (
+        set "toUseFullPath=1"
+    ) else (
+        echo/%orgArgs% | find /i "/D">nul 2>nul
+        if "!errorlevel!" == "0" set "toUseFullPath=1"
+    )
+    if "%toUseFullPath%" == "1" (
+        for /f "tokens=*" %%a in ("%target%") do set "target=%%~dpnxa"
+    )
     mklink %orgArgs% "%link%" "%target%"
 
     :eoa
     endlocal
-    goto:eof
+goto:eof

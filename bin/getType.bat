@@ -11,7 +11,14 @@
     @set "type="
     @if "%~2" == "" goto:eoa
 
-    @set "nxForRegex=%~nx2"
+    @set "nxForRegex=%~2"
+    @if "%nxForRegex:~-1%" == "\" @set "nxForRegex=%nxForRegex:~0,-1%"
+    @for /f "tokens=*" %%a in ("%nxForRegex%") do @(
+        @set "dpForDir=%%~dpa"
+        @set "nxForRegex=%%~nxa"
+    )
+    @if "%dpForDir:~-1%" == "\" @ set "dpForDir=%dpForDir:~0,-1%"
+
     @set "nxForRegex=%nxForRegex:.=\.%"
     @set "nxForRegex=%nxForRegex:[=\[%"
     @set "nxForRegex=%nxForRegex:]=\]%"
@@ -21,19 +28,19 @@
     @set "regexForLink=  *<.*>  *%nxForRegex%  *\[.*\]$"
     @set "regexForFile=[0-9]  *%nxForRegex%$"
 
-    @for /f "tokens=3" %%a in ('dir ^| findstr /i /r /c:"%regexForDir%"') do @(
+    @for /f "tokens=3" %%a in ('dir "%dpForDir%" ^| findstr /i /r /c:"%regexForDir%"') do @(
         @set "type=%%a"
         @set "type=!type:~1,-1!"
         @break
     )
     @if not "%type%" == "" goto:eoa
-    @for /f "tokens=3" %%a in ('dir ^| findstr /i /r /c:"%regexForLink%"') do @(
+    @for /f "tokens=3" %%a in ('dir "%dpForDir%" ^| findstr /i /r /c:"%regexForLink%"') do @(
         @set "type=%%a"
         @set "type=!type:~1,-1!"
         @break
     )
     @if not "%type%" == "" goto:eoa
-    @for /f "tokens=3" %%a in ('dir ^| findstr /i /r /c:"%regexForFile%"') do @(
+    @for /f "tokens=3" %%a in ('dir "%dpForDir%" ^| findstr /i /r /c:"%regexForFile%"') do @(
         @set "type=FILE"
         @break
     )

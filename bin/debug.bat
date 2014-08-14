@@ -1,5 +1,4 @@
-@echo off
-set "link=abc_symlinkd"
-mymklink /j /r "%link%" "abc"
-call getType "theType" "%link%"
-echo/type=%theType%
+@mymklink /s /j /r "Link" "Target"
+rem rem @set "link=abc_symlinkd"
+rem rem @call getType "theType" "%link%"
+rem rem @echo/type=%theType%

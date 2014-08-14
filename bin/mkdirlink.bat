@@ -1,6 +1,6 @@
 :dirlink   -- Make links for all files and dirs in one dir to another dir.
-::          -- %~1: The source dir.
-::          -- %~2: The target dir.
+::          -- %~1  The source dir.
+::          -- %~2  The target dir.
     @echo off
     setlocal enabledelayedexpansion
 
@@ -41,14 +41,14 @@
     for /f "tokens=*" %%a in ('dir/b/ad "%~1"') do (
         call :isIgnored "ignored" "%%~dpnxa" "%ignoreset%"
         if "!ignored!" == "0" (
-            echo/Making link "%target%\%%~nxa" ^<^<===^>^> "%source%\%%~nxa" ...
+            echo/Making link "%target%\%%~nxa" ^<^<===^>^> "%source%\%%~nxa" ......
             call mymklink /f /j "%target%\%%~nxa" "%source%\%%~nxa"
         )
     )
     for /f "tokens=*" %%a in ('dir/b/a-d "%~1"') do (
         call :isIgnored "ignored" "%%~dpnxa" "%ignoreset%"
         if "!ignored!" == "0" (
-            echo/Making link "%target%\%%~nxa" ^<^<===^>^> "%source%\%%~nxa" ...
+            echo/Making link "%target%\%%~nxa" ^<^<===^>^> "%source%\%%~nxa" ......
             call mymklink /f "%target%\%%~nxa" "%source%\%%~nxa"
         )
     )
