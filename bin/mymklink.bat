@@ -298,31 +298,70 @@ goto :eof
             )
         )
         if "!doMove!" == "1" (
-            :beforeXcopy_1
-            xcopy /rehkc "%link%" "%target%" && (
-                echo/xcopy succ^!> nul
-            ) || (
-                echo/Error^(s^) occurred while coping contents of link to target.
-                :beforeSetPicking_2
+            set "succlist="
+            set "faillist="
+            set succcount=0
+            set failcount=0
+            set breaked=0
+            for /f "tokens=*" %%a in ('dir/b/a "%link%"') do (
+                if !breaked! equ 0 (
+                    echo/Moving "%link%\%%~nxa" to "%target%" ......
+                    move /y "%link%\%%~nxa" "%target%"
+                    if !errorlevel! equ 0 (
+                        set /a succcount=succcount+1
+                        set "succlist=!succlist! "%%a""
+                    ) else (
+                        set /a failcount=failcount+1
+                        set "faillist=!faillist! "%%a""
+                    )
+                )
+            )
+            echo/succ list:
+            for %%a in (!succlist!) do echo/    %link%\%%~a
+            echo/fail list:
+            for %%a in (!faillist!) do echo/    %link%\%%~a
+            echo/   !succcount! succ ^| !failcount! fail
+            if not !failcount! == "0" (
+                :beforeSetPicking_4
                 set "picking="
-                set /p "picking=(Retry/Ignore/Cancel): "
-                if /i "!picking!" == "Retry" (
-                    goto:beforeXcopy_1
-                ) else if /i "!picking!" == "R" (
-                    goto:beforeXcopy_1
-                ) else if /i "!picking!" == "Ignore" (
-                    echo/continue>nul
-                ) else if /i "!picking!" == "I" (
-                    echo/continue>nul
-                ) else if /i "!picking!" == "Cancel" (
-                    goto:eoa
-                ) else if /i "!picking!" == "C" (
-                    goto:eoa
-                ) else (
-                    goto:beforeSetPicking_2
+                set /p "picking=Error(s) occurred, Ignore or Cancel? (I/C): "
+                if /i "!picking!" == "C" (
+                    for %%a in (!succlist!) do (
+                        echo/Rolling back "%target%\%%~a" ......
+                        move /y "%target%\%%~a" "%link%"
+                    )
+                    goto :eoa
+                ) else if /i not "!picking!" == "I" (
+                    goto :beforeSetPicking_4
                 )
             )
         )
+        rem if "!doMove!" == "1" (
+        rem     :beforeXcopy_1
+        rem     xcopy /rehkcb "%link%" "%target%" && (
+        rem         echo/xcopy succ^!> nul
+        rem     ) || (
+        rem         echo/Error^(s^) occurred while coping contents of link to target.
+        rem         :beforeSetPicking_2
+        rem         set "picking="
+        rem         set /p "picking=(Retry/Ignore/Cancel): "
+        rem         if /i "!picking!" == "Retry" (
+        rem             goto:beforeXcopy_1
+        rem         ) else if /i "!picking!" == "R" (
+        rem             goto:beforeXcopy_1
+        rem         ) else if /i "!picking!" == "Ignore" (
+        rem             echo/continue>nul
+        rem         ) else if /i "!picking!" == "I" (
+        rem             echo/continue>nul
+        rem         ) else if /i "!picking!" == "Cancel" (
+        rem             goto:eoa
+        rem         ) else if /i "!picking!" == "C" (
+        rem             goto:eoa
+        rem         ) else (
+        rem             goto:beforeSetPicking_2
+        rem         )
+        rem     )
+        rem )
 
         :beforeDeleteLink_1
         set "errlvl=1"

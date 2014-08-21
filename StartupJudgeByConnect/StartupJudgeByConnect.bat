@@ -1,8 +1,10 @@
-echo off & cls
-SETLOCAL ENABLEDELAYEDEXPANSION
+@echo off
+setlocal enabledelayedexpansion
 
-set  "config_file=config.ini"
-set  "delay_time=1"
+for /f "usebackq" %%i in (`hostname`) do set "hostname=%%i"
+set "config_file=%~n0_%hostname%.ini"
+set "delay_time_start=1"
+set "delay_time_end=1"
 echo/
 
 set "count=0"
@@ -14,8 +16,8 @@ if "%count%"=="0" (
     goto :eoself
 )
 
-echo   Start program after %delay_time% seconds...
-call :delay 5
+echo   Start program after %delay_time_start% seconds...
+call :delay %delay_time_start%
 echo   --------
 for /f "usebackq tokens=* eol=; delims=" %%a in ("%~sdp0%config_file%") do (
     for /f "tokens=1,2,3,4 delims=?" %%b in ("%%a") do (
@@ -44,11 +46,11 @@ for /f "usebackq tokens=* eol=; delims=" %%a in ("%~sdp0%config_file%") do (
     )
 )
 echo   --------
-echo   Exit program after %delay_time% second(s).
+echo   Exit program after %delay_time_end% second(s).
 
 :eoself
-    call :delay 3 >nul 2>nul
-    ENDLOCAL
+    call :delay %delay_time_end% >nul 2>nul
+    endlocal
     exit/b
 
 :delay %~1

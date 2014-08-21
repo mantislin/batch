@@ -1,10 +1,9 @@
 :EnvSetter      -- Set user environments (not global environments).
 ::              -- Read environment settings those set in config file, then output the processed settings to reg file them import it.
-::              -- tip: You can use variable like %JAVA_HOME% in the config file, but make sure that they cannot be used before defined.
 
-@ECHO OFF
+@echo OFF
 
-REM --> Check for permissions
+rem --> Check for permissions
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
 if '%errorlevel%' NEQ '0' (
@@ -24,7 +23,7 @@ if '%errorlevel%' NEQ '0' (
     "%temp%\getadmin.vbs"
     del "%temp%\getadmin.vbs"
     endlocal
-    exit /B
+    goto :eof
 
 :gotAdmin
     pushd "%CD%"
@@ -32,39 +31,51 @@ if '%errorlevel%' NEQ '0' (
 
 :--------------------------------------
 
-SETLOCAL ENABLEDELAYEDEXPANSION
+setlocal enabledelayedexpansion
 
 :SOA
-    FOR /F "usebackq" %%i IN (`hostname`) DO SET "hostname=%%i"
-    SET "scrname=%~n0"
-    SET "fn=%scrname%_%hostname%"
-    SET "conf_n=%fn%.ini"
-    SET "reg_n=%fn%.reg"
-    SET "confile=%~dp0%conf_n%"
-    SET "regfile=%~dp0%reg_n%"
-    IF NOT EXIST "%confile%" (
-        ECHO/The system cannot find the config file "%conf_n%". & PAUSE
-        GOTO :eoa
+    set toQuiet=0
+    if /i "%~1" == "/q" set toQuiet=1
+
+    for /f "usebackq" %%i in (`hostname`) do set "hostname=%%i"
+    set "scrname=%~n0"
+    set "fn=%scrname%_%hostname%"
+    set "conf_n=%fn%.ini"
+    set "reg_n=%fn%.reg"
+    set "confile=%~dp0%conf_n%"
+    set "regfile=%~dp0%reg_n%"
+    if not exist "%confile%" (
+        echo/The system cannot find the config file "%conf_n%". & pause
+        goto :EOA
     )
-    IF EXIST "%regfile%" DEL/Q/F "%regfile%"
-    FOR /F "usebackq tokens=1* delims=:=" %%a in ("%confile%") do (
-        IF NOT "%%b" == "" (
-            IF /I "%%a" == "path" (
-                CALL SET "path_escape=%%b"
-                SET "output=^"path^"=^"!path_escape!^""
-            ) ELSE (
-                CALL SET "%%a=%%b"
-                SET "output=^"%%a^"=^"!%%a!^""
-            )
-            SET "output=!output:\=\\!"
-        ) ELSE (
-            SET "output=%%a"
+    :: preload, make all variables efficacious
+    for /f "usebackq tokens=1* delims=:=" %%a in ("%confile%") do (
+        if not "%%b" == "" (
+            if /i not "%%a" == "path" call set "%%a=%%b"
         )
-        ECHO/!output!>>"%regfile%"
     )
-    IF NOT EXIST "%regfile%" GOTO:EOA
-    REG IMPORT "%regfile%"
+    :: load
+    if exist "%regfile%" del/q/f "%regfile%"
+    for /f "usebackq tokens=1* delims=:=" %%a in ("%confile%") do (
+        if not "%%b" == "" (
+            if /i "%%a" == "path" (
+                call set "path_escape=%%b"
+                set "output=^"path^"=^"!path_escape!^""
+            ) ELSE (
+                call set "%%a=%%b"
+                set "output=^"%%a^"=^"!%%a!^""
+            )
+            set "output=!output:\=\\!"
+        ) ELSE (
+            set "output=%%a"
+        )
+        echo/!output!>>"%regfile%"
+    )
+    if not exist "%regfile%" goto :EOA
+    reg import "%regfile%"
+
+    if not "%toQuiet%" == "1" pause
 
 :EOA
-    ENDLOCAL
-    EXIT/B
+    endlocal
+    goto :eof
