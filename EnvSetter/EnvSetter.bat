@@ -23,7 +23,7 @@ if '%errorlevel%' NEQ '0' (
     "%temp%\getadmin.vbs"
     del "%temp%\getadmin.vbs"
     endlocal
-    goto :eof
+    exit/b
 
 :gotAdmin
     pushd "%CD%"
@@ -78,4 +78,4 @@ setlocal enabledelayedexpansion
 
 :EOA
     endlocal
-    goto :eof
+    exit/b

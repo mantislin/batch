@@ -119,5 +119,4 @@ pause
 
 :thend
 ENDLOCAL
-rem pause >nul 2>nul
 exit/b
