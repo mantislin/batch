@@ -285,16 +285,17 @@ goto :eof
         if "!toMove!" == "1" set "toDelete=1"
 
         set "doMove=0"
+        set "doDelete=0"
         call getType "linkType" "%link%"
         if "!toMoveDir!" == "1" (
-            if "!linkType!" == "DIR" set "doMove=1"
+            if "!linkType!" == "DIR" set "doMove=1" &  set "doDelete=1"
         ) else if "!toMove!" == "1" (
             if "!linkType!" == "DIR" (
-                set "doMove=1"
+                set "doMove=1" & set "doDelete=1"
             ) else if "!linkType!" == "JUNCTION" (
-                set "doMove=1"
+                set "doMove=1" & set "doDelete=1"
             ) else if "!linkType!" == "SYMLINKD" (
-                set "doMove=1"
+                set "doMove=1" & set "doDelete=1"
             )
         )
         if "!doMove!" == "1" (
@@ -321,7 +322,7 @@ goto :eof
             echo/fail list:
             for %%a in (!faillist!) do echo/    %link%\%%~a
             echo/   !succcount! succ ^| !failcount! fail
-            if not !failcount! == "0" (
+            if not "!failcount!" == "0" (
                 :beforeSetPicking_4
                 set "picking="
                 set /p "picking=Error(s) occurred, Ignore or Cancel? (I/C): "
@@ -336,66 +337,42 @@ goto :eof
                 )
             )
         )
-        rem if "!doMove!" == "1" (
-        rem     :beforeXcopy_1
-        rem     xcopy /rehkcb "%link%" "%target%" && (
-        rem         echo/xcopy succ^!> nul
-        rem     ) || (
-        rem         echo/Error^(s^) occurred while coping contents of link to target.
-        rem         :beforeSetPicking_2
-        rem         set "picking="
-        rem         set /p "picking=(Retry/Ignore/Cancel): "
-        rem         if /i "!picking!" == "Retry" (
-        rem             goto:beforeXcopy_1
-        rem         ) else if /i "!picking!" == "R" (
-        rem             goto:beforeXcopy_1
-        rem         ) else if /i "!picking!" == "Ignore" (
-        rem             echo/continue>nul
-        rem         ) else if /i "!picking!" == "I" (
-        rem             echo/continue>nul
-        rem         ) else if /i "!picking!" == "Cancel" (
-        rem             goto:eoa
-        rem         ) else if /i "!picking!" == "C" (
-        rem             goto:eoa
-        rem         ) else (
-        rem             goto:beforeSetPicking_2
-        rem         )
-        rem     )
-        rem )
 
-        :beforeDeleteLink_1
-        set "errlvl=1"
-        if "!linkType!" == "FILE" (
-            del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
-        ) else if "!linkType!" == "SYMLINK" (
-            del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
-        ) else if "!linkType!" == "DIR" (
-            rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
-        ) else if "!linkType!" == "SYMLINKD" (
-            rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
-        ) else if "!linkType!" == "JUNCTION" (
-            rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
-        ) else (
-            del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
-            if "!errlvl!" == "1" (
+        if "!doDelete!" == "1" (
+            :beforeDeleteLink_1
+            set "errlvl=1"
+            if "!linkType!" == "FILE" (
+                del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
+            ) else if "!linkType!" == "SYMLINK" (
+                del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
+            ) else if "!linkType!" == "DIR" (
                 rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
-            )
-        )
-        if "!errlvl!" == "1" (
-            set "picking="
-            :beforeSetPicking_3
-            set "picking="
-            set /p "picking=Error occurred when deleting ^"%link%^" ^! ^(Retry/Cancel^): 
-            if /i "!picking!" == "Retry" (
-                goto:beforeDeleteLink_1
-            ) else if /i "!picking!" == "R" (
-                goto:beforeDeleteLink_1
-            ) else if /i "!picking!" == "Cancel" (
-                goto:eoa
-            ) else if /i "!picking!" == "C" (
-                goto:eoa
+            ) else if "!linkType!" == "SYMLINKD" (
+                rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
+            ) else if "!linkType!" == "JUNCTION" (
+                rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
             ) else (
-                goto:beforeSetPicking_3
+                del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
+                if "!errlvl!" == "1" (
+                    rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
+                )
+            )
+            if "!errlvl!" == "1" (
+                set "picking="
+                :beforeSetPicking_3
+                set "picking="
+                set /p "picking=Error occurred when deleting ^"%link%^" ^! ^(Retry/Cancel^): 
+                if /i "!picking!" == "Retry" (
+                    goto:beforeDeleteLink_1
+                ) else if /i "!picking!" == "R" (
+                    goto:beforeDeleteLink_1
+                ) else if /i "!picking!" == "Cancel" (
+                    goto:eoa
+                ) else if /i "!picking!" == "C" (
+                    goto:eoa
+                ) else (
+                    goto:beforeSetPicking_3
+                )
             )
         )
     )
