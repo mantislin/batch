@@ -41,7 +41,7 @@ for /f "usebackq tokens=* eol=; delims=" %%a in ("%~sdp0%config_file%") do (
 
         if "!state!" == "1" (
             echo/++++ start : %%b, starting......
-            rem start /min "" "%%c"
+            start /min "" "%%c"
         ) else if "!state!" == "0" (
             echo/---- skip : %%b
         ) else (
