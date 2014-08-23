@@ -186,7 +186,7 @@ goto :eof
 goto :eof
 :: =============================================================================
 :makelink       -- My make link
-::              -- /R       If the link file already exists and is a dorectory, and the target is a directory, then move it's contents to target, and then delete it. (implies /F)
+::              -- /R       If the link file already exists then delete it, and only when it is a directory, move it's contents to target. (implies /F)
 ::              -- /H       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
 ::
@@ -247,7 +247,6 @@ goto :eof
         shift
         if not "%~1" == "" goto :loop_makelink_1
     )
-    call trimleft "orgArgs" "%orgArgs%"
 
     if "%link%" == "" (
         echo/The syntax of the command is incorrect.
@@ -284,11 +283,13 @@ goto :eof
         if "!toMoveDir!" == "1" set "toMove=1"
         if "!toMove!" == "1" set "toDelete=1"
 
+        :: here
         set "doMove=0"
         set "doDelete=0"
         call getType "linkType" "%link%"
         if "!toMoveDir!" == "1" (
-            if "!linkType!" == "DIR" set "doMove=1" &  set "doDelete=1"
+            if "!linkType!" == "DIR" set "doMove=1"
+            set "doDelete=1"
         ) else if "!toMove!" == "1" (
             if "!linkType!" == "DIR" (
                 set "doMove=1" & set "doDelete=1"
