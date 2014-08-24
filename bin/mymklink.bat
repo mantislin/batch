@@ -1,6 +1,6 @@
 :mymklink       -- My make link
 ::              -- /R       If the link file already exists and is a dorectory, and the target is a directory, then move it's contents to target, and then delete it. (implies /F)
-::              -- /H       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
+::              -- /M       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
 ::              -- /S       If this feature set, this script will not gonna make link for Target <<===>> Link, but make links for Target\* <<===>> Link\*, except it is fetched by the ignore list in config file.
 ::
@@ -192,7 +192,7 @@ goto :eof
 :: =============================================================================
 :makelink       -- My make link
 ::              -- /R       If the link file already exists then delete it, and only when it is a directory, move it's contents to target. (implies /F)
-::              -- /H       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
+::              -- /M       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
 ::
 ::              -- /D       Creates a directory symbolic link. Default is a file symbolic link.
@@ -230,7 +230,7 @@ goto :eof
                     set "isOrgArg=0"
                     if /i "!chr1!" == "R" (
                         set "toMoveDir=1"
-                    ) else if /i "!chr1!" == "H" (
+                    ) else if /i "!chr1!" == "M" (
                         set "toMove=1"
                     ) else if /i "!chr1!" == "F" (
                         set "toDelete=1"
