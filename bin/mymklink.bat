@@ -10,11 +10,16 @@
 ::              -- Link     specifies the new symbolic link name.
 ::              -- Target   specifies the path (relative or absolute) that the new link refers to.
     @echo off
+
+    set "A_ScriptPath=%~dp0"
+    set "A_ScriptName=%~n0"
+    set "A_ScriptEx=%~x0"
+
     setlocal enabledelayedexpansion
 
     set "toMakeDirLink=0"
     :loop_mymklink_1
-        if "%~1" == "" goto:done_mymklink_1
+        if "%~1" == "" goto :done_mymklink_1
         if not "%~1" == "" (
             set "arg1=%~1"
             if "!arg1:~0,1!" == "/" (
@@ -29,12 +34,12 @@
                             goto done_mymklink_1
                         )
 
-                        goto:loop_mymklink_1_1
+                        goto :loop_mymklink_1_1
                     )
             )
             shift
         )
-        goto:loop_mymklink_1
+        goto :loop_mymklink_1
     :done_mymklink_1
 
     if "%toMakeDirLink%" == "1" (
@@ -45,7 +50,7 @@
 
     :eoa
     endlocal
-goto:eof
+goto :eof
 :: =============================================================================
 :mkdirlink      -- Make links for all files and dirs in one dir to another dir.
 ::                  For subfiles, link type can be [symbolic link (default) | hard link].
@@ -64,7 +69,7 @@ goto:eof
     set "link="
     set "target="
     :loop_mkdirlink_1
-        if "%~1" == "" goto:done_mkdirlink_1
+        if "%~1" == "" goto :done_mkdirlink_1
         if not "%~1" == "" (
             set "arg1=%~1"
             if not "!arg1:~0,1!" == "/" (
@@ -90,12 +95,12 @@ goto:eof
                             set "orgArgs=!orgArgs! /!chr1!"
                         )
 
-                        goto:loop_mkdirlink_1_1
+                        goto :loop_mkdirlink_1_1
                     )
             )
             shift
         )
-        goto:loop_mkdirlink_1
+        goto :loop_mkdirlink_1
     :done_mkdirlink_1
 
     if "%link%" == "" (
@@ -123,7 +128,7 @@ goto:eof
     if "%link:~-1%" == "\" set "link=%link:~0,-1%"
     if "%target:~-1%" == "\" set "target=%target:~0,-1%"
 
-    set "config=%~dpn0.ini"
+    set "config=%A_ScriptPath%%A_ScriptName%.ini"
     set "ignoreset="
     if exist "%config%" (
         for /f "usebackq tokens=* delims= eol=#" %%a in ("%config%") do (
@@ -241,7 +246,7 @@ goto :eof
                     )
                     rem ==============================
 
-                    goto:loop_makelink_1_1
+                    goto :loop_makelink_1_1
                 )
         )
         shift
@@ -274,9 +279,9 @@ goto :eof
             ) else if /i "!picking!" == "M" (
                 set "toMove=1"
             ) else if /i "!picking!" == "C" (
-                goto:eoa
+                goto :eoa
             ) else (
-                goto:beforeSetPicking_1
+                goto :beforeSetPicking_1
             )
         )
 
@@ -364,15 +369,15 @@ goto :eof
                 set "picking="
                 set /p "picking=Error occurred when deleting ^"%link%^" ^! ^(Retry/Cancel^): 
                 if /i "!picking!" == "Retry" (
-                    goto:beforeDeleteLink_1
+                    goto :beforeDeleteLink_1
                 ) else if /i "!picking!" == "R" (
-                    goto:beforeDeleteLink_1
+                    goto :beforeDeleteLink_1
                 ) else if /i "!picking!" == "Cancel" (
-                    goto:eoa
+                    goto :eoa
                 ) else if /i "!picking!" == "C" (
-                    goto:eoa
+                    goto :eoa
                 ) else (
-                    goto:beforeSetPicking_3
+                    goto :beforeSetPicking_3
                 )
             )
         )
@@ -392,4 +397,4 @@ goto :eof
 
     :eoa
     endlocal
-goto:eof
+goto :eof
