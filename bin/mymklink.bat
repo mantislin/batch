@@ -288,7 +288,6 @@ goto :eof
         if "!toMoveDir!" == "1" set "toMove=1"
         if "!toMove!" == "1" set "toDelete=1"
 
-        :: here
         set "doMove=0"
         set "doDelete=0"
         call getType "linkType" "%link%"
@@ -297,12 +296,17 @@ goto :eof
             set "doDelete=1"
         ) else if "!toMove!" == "1" (
             if "!linkType!" == "DIR" (
-                set "doMove=1" & set "doDelete=1"
+                set "doMove=1"
+                set "doDelete=1"
             ) else if "!linkType!" == "JUNCTION" (
-                set "doMove=1" & set "doDelete=1"
+                set "doMove=1"
+                set "doDelete=1"
             ) else if "!linkType!" == "SYMLINKD" (
-                set "doMove=1" & set "doDelete=1"
+                set "doMove=1"
+                set "doDelete=1"
             )
+        ) else if "!toDelete!" == "1" (
+            set "doDelete=1"
         )
         if "!doMove!" == "1" (
             set "succlist="
@@ -348,20 +352,19 @@ goto :eof
             :beforeDeleteLink_1
             set "errlvl=1"
             if "!linkType!" == "FILE" (
-                del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
+                del/q/f/a "%link%" && set "errlvl=0"
             ) else if "!linkType!" == "SYMLINK" (
-                del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
+                del/q/f/a "%link%" && set "errlvl=0"
             ) else if "!linkType!" == "DIR" (
-                rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
+                rd/q/s "%link%" && set "errlvl=0"
             ) else if "!linkType!" == "SYMLINKD" (
-                rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
+                rd/q/s "%link%" && set "errlvl=0"
             ) else if "!linkType!" == "JUNCTION" (
-                rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
+                rd/q/s "%link%" && set "errlvl=0"
             ) else (
-                del/q/f/a "%link%" && set "errlvl=0" || set "errlvl=1"
-                if "!errlvl!" == "1" (
-                    rd/q/s "%link%" && set "errlvl=0" || set "errlvl=1"
-                )
+        rd/q/s "%link%" && set "errlvl=0" || (
+            del/q/f/a "%link%" && set "errlvl=0"
+        )
             )
             if "!errlvl!" == "1" (
                 set "picking="

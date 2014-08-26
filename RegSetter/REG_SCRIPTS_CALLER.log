@@ -1,0 +1,351 @@
+CALL "D:\important\bat\REG_shutdownwithoutlogon.bat" "1"
+CALL "D:\important\bat\REG_shutdownwithoutlogon.bat" "1"
+CALL "D:\important\bat\REG_shutdownwithoutlogon.bat" "1"
+CALL "" ""
+CALL D:\important\bat\REG_shutdownwithoutlogon.bat 1
+CALL
+ECHO is off.
+ECHO is off.
+
+REG_SCRIPTS_CALLER.bat
+REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 01
+REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+date/t time/t REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+date/t time/t REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+date/ttime/tREG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+'date/t''time/t'REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+Sat-21-2014 2044 REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-21 2045 REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-21 20:45 REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-21 20:46 REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-21 20:46 REG_SCRIPTS_CALLER.bat
+2014-06-21 20:48 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-22 08:54 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-22 12:46 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-22 13:30 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-22 15:11 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-22 15:16 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-22 15:27 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-23 01:11 D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-23,14:41,D:\IMPORT~1\bat\REG_SC~1.BAT,REG_shutdownwithoutlogon.bat 0
+2014-06-23,14:41,D:\IMPORT~1\bat\REG_SC~1.BAT,REG_shutdownwithoutlogon.bat 0
+2014-06-23,14:43,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_shutdownwithoutlogon.bat 0
+2014-06-23,14:46,D:\IMPORT~1\bat\REG_SC~1.BAT REG_shutdownwithoutlogon.bat 0
+2014-06-23 14:47 D:\IMPORT~1\bat\REG_SC~1.BAT REG_shutdownwithoutlogon.bat 0
+2014-06-23 14:49 D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_shutdownwithoutlogon.bat 0
+2014-06-23 14:49 D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_shutdownwithoutlogon.bat 1
+2014-06-23 14:49 D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_shutdownwithoutlogon.bat 0
+2014-06-23,14:50,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_shutdownwithoutlogon.bat 0
+2014-06-23,14:52,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_dontdisplaylastusername 0
+2014-06-23,14:52,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_dontdisplaylastusername.bat 0
+2014-06-23,14:52,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_dontdisplaylastusername.bat 1
+2014-06-23,14:54,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_shutdownwithoutlogon.bat 0
+2014-06-23,20:05,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-24,05:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-24,07:20,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-24,07:56,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-24,20:34,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-25,03:06,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-25,04:26,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-25,04:33,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-25,18:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-25,18:46,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-25,20:56,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-25,23:24,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-26,01:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-26,03:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-26,15:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-26,17:14,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-26,20:17,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-26,23:19,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-27,01:44,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-27,03:00,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-27,05:57,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-27,06:31,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-27,07:05,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-27,08:22,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-27,17:51,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-27,18:19,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-27,18:27,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,01:56,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,02:03,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,02:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,02:39,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,02:45,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,02:46,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,02:52,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,02:53,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,03:00,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,03:02,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,03:09,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,07:12,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,17:57,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,19:20,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,21:16,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,22:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-28,22:43,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-28,23:42,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-29,06:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-29,07:48,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-29,16:18,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-29,16:52,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-29,23:20,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-29,23:25,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-29,23:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-30,03:45,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-30,06:44,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-30,07:05,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-30,09:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-06-30,12:05,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-06-30,21:11,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-01,12:00,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-01,12:39,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-01,12:46,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-01,16:57,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-01,17:09,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-02,12:00,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-02,21:28,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-02,22:33,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-02,22:51,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-03,09:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-03,11:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-03,15:21,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-03,19:07,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-03,22:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-04,03:27,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-04,05:08,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-04,05:13,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-04,07:38,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-04,19:02,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-04,21:46,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-04,21:51,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-05,23:33,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-05,23:39,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-05,23:54,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-06,00:44,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-06,01:34,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-06,01:58,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-06,11:24,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-06,21:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-07,02:59,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-07,04:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-07,09:12,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-07,09:18,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-07,20:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-07,22:53,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-07,23:43,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-07,23:48,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-07,23:57,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-08,00:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-08,12:49,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-08,12:55,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-08,14:31,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-08,18:13,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-08,18:30,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-08,18:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-08,18:45,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-08,20:17,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-08,23:54,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-09,09:20,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-09,09:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-09,09:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-09,10:31,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-09,10:38,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-09,12:42,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-09,14:41,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-09,14:44,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-09,21:43,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-09,21:50,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-10,01:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-10,01:24,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-10,02:53,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-10,03:34,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-10,23:48,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-11,07:09,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-11,08:19,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-11,20:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-11,22:10,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-12,02:31,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-12,02:46,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-12,12:06,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-12,14:37,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-12,18:13,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-12,20:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-13,01:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-13,03:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-13,06:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-13,14:20,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-14,05:41,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-14,14:34,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-15,06:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-15,14:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-15,14:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-15,16:41,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-15,19:25,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-15,20:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-16,09:16,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-16,19:32,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-17,06:01,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-17,06:13,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-17,06:30,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-17,06:39,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-17,20:02,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-17,20:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-18,02:12,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-18,16:08,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-19,15:53,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-20,17:11,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-22,18:52,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,D:\important\bat\REG_link.bat 00000000
+2014-07-22,19:01,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "00000000"
+2014-07-22,19:01,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "00000000"
+2014-07-22,19:02,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:02,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:02,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:04,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:04,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "00000000"
+2014-07-22,19:05,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:06,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:06,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:07,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:08,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:08,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:08,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:09,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:09,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "00000000"
+2014-07-22,19:10,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:10,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:11,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:12,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:14,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:14,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,D:\important\bat\REG_link.bat 1E000000
+2014-07-22,19:14,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,D:\important\bat\REG_link.bat 1E000000
+2014-07-22,19:16,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,D:\important\bat\REG_link.bat 1E000000
+2014-07-22,19:17,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,D:\important\bat\REG_link.bat 1E000000
+2014-07-22,19:19,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:20,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,19:20,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "1E000000"
+2014-07-22,21:37,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "00000000"
+2014-07-22,21:38,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_link.bat" "00000000"
+2014-07-23,07:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,07:51,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,07:55,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:07,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:07,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:13,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-23,08:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-23,08:31,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:35,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:37,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:41,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:43,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:45,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:49,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,08:54,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-23,08:55,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,09:00,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,09:05,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-23,09:07,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,19:15,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-23,20:17,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-29,05:43,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-29,05:49,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-30,02:37,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-30,07:46,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-30,16:41,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-30,18:26,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-30,19:02,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-07-30,23:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-07-31,16:27,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-02,23:17,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-02,23:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-03,07:45,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-03,08:42,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-08,11:30,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-08,11:36,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-09,05:39,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-09,14:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-10,03:27,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-10,05:01,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-10,07:50,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-10,16:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-10,16:48,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-11,00:03,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-11,02:33,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-11,05:34,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat add
+2014-08-11,05:36,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat add
+2014-08-11,05:36,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat off
+2014-08-11,05:39,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat add
+2014-08-11,05:40,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat del
+2014-08-11,05:40,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat del
+2014-08-11,05:40,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat add
+2014-08-11,05:42,D:\important\bat\REG_SCRIPTS_CALLER.bat,REG_OpenCommandWindowHere.bat add
+2014-08-11,07:12,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-11,13:30,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-11,13:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-14,12:49,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-14,13:04,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-15,06:17,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-15,08:11,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-15,08:16,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-15,08:21,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-15,08:33,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-15,19:36,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-15,22:45,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-15,22:51,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-16,00:41,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-16,00:47,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-16,00:54,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-16,09:07,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-16,09:14,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-16,12:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-16,12:40,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-16,16:12,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-16,17:36,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-16,17:53,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-17,12:54,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 1
+2014-08-17,13:06,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 0
+2014-08-18,08:07,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-20,03:05,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-20,04:29,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-20,15:57,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-21,03:26,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-21,17:21,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-21,17:48,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-22,03:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-22,18:23,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-23,03:09,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-23,11:56,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-23,12:02,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-23,17:37,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-23,17:49,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-23,19:44,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-24,14:09,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-24,14:14,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,11:03,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,11:09,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,14:17,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,21:48,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,09:53 PM,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,10:14 PM,D:\important\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25,10:22 PM,D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25 10:33,    D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25 10:34 PM,    D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25 10:34 PM,    D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25 10:35 PM,    D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat,"D:\important\bat\REG_shutdownwithoutlogon.bat" 
+2014-08-25 10:43 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 
+2014-08-25 10:50 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 
+2014-08-25 10:51 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 
+2014-08-25 10:55 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 
+2014-08-25 10:55 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 1 
+"2014-08-25 10:56 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 1"
+2014-08-25 10:57 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 1
+2014-08-25 10:59 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 
+2014-08-25 10:59 PM, D:\IMPORT~1\bat\REG_SCRIPTS_CALLER.bat REG_shutdownwithoutlogon.bat 1 
+2014-08-25 11:16 PM, D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 1 
+2014-08-25 23:24, D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 0 
+2014-08-25 23:39, D:\important\bat\REG_SCRIPTS_CALLER.bat "D:\important\bat\REG_shutdownwithoutlogon.bat" 1 
+2014-08-25 23:46, D:\uData\documents\Laboratory\Batch\RegSetter\REG_SCRIPTS_CALLER.bat "D:\uData\documents\Laboratory\Batch\RegSetter\REG_shutdownwithoutlogon.bat" 0 
