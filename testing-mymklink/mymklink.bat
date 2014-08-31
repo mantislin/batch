@@ -214,10 +214,8 @@ goto :eof
     if not "%~1" == "" (
         set "arg1=%~1"
         if not "!arg1:~0,1!" == "/" (
-            if "!link!" == "" (
-                set "link=!arg1!"
-            ) else if "!target!" == "" (
-                set "target=!arg1!"
+            if "!link!" == "" ( set "link=!arg1!"
+            ) else if "!target!" == "" ( set "target=!arg1!"
             )
         ) else (
             set "arg1=!arg1:~1!"
@@ -330,6 +328,7 @@ goto :eof
                 )
                 set "sset=!nsset!"
             )
+
             set "succlist=" & set "faillist=" & set "skiplist="
             set succcount=0 & set failcount=0 & set skipcount=0
             set breaked=0
@@ -377,6 +376,8 @@ goto :eof
             )
             echo/===== !succcount! succ ^| !skipcount! skip ^| !failcount! fail =====
             if not "!failcount!" == "0" (
+                set "attrDest="
+                set shouldEnd=0
                 :beforeSetPicking_4
                 set "picking="
                 set /p "picking=Error(s) occurred, Ignore or Cancel? (I/C): "
@@ -385,13 +386,22 @@ goto :eof
                         echo/Rollbacking "%target%\%%~a" ......
                         move /y "%target%\%%~a" "%link%"
                     )
-                    goto :eoa
-                ) else if /i not "!picking!" == "I" (
+                    set "attrDest=%link%"
+                    set shouldEnd=1
+                ) else if not "!picking!" == "I" (
+                    set "attrDest=%target%"
+                ) else (
                     goto :beforeSetPicking_4
                 )
             ) else (
+                set "attrDest=%target%"
                 call delay 1000
             )
+
+            for %%a in (!hset!) do attrib -s +h "!attrDest!\%%~a"
+            for %%a in (!sset!) do attrib +s -h "!attrDest!\%%~a"
+            for %%a in (!hsset!) do attrib +s +h "!attrDest!\%%~a"
+            if !shouldEnd! neq 0 goto :eoa
         )
 
         if "!doDelete!" == "1" (

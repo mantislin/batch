@@ -56,6 +56,8 @@ echo/%link%\SystemHiddenAttributedFile.txt>"%link%\SystemHiddenAttributedFile.tx
     attrib +s +h "%link%\SystemHiddenAttributedFile.txt" )
 echo/%link%\ReadonlyFile.txt>"%link%\ReadonlyFile.txt" && (
     attrib +r "%link%\ReadonlyFile.txt" )
+echo/%link%\(HiddenSpecChar).txt>"%link%\(HiddenSpecChar).txt" && (
+    attrib -s +h "%link%\(HiddenSpecChar).txt" )
 echo/%link%\(x86).txt>"%link%\(x86).txt"
 echo/%link%\().txt>"%link%\().txt"
 md "%link%\DirDeniedAccess"
