@@ -112,5 +112,4 @@ pause
 
 :thend
 endlocal
-pause
 exit/b
