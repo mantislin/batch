@@ -1,7 +1,7 @@
 :mymklink       -- My make link
-::              -- /R       If the link file already exists and is a dorectory, and the target is a directory, then move it's contents to target, and then delete it. (implies /F)
 ::              -- /M       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
+::              -- /R       If the link file already exists, delete it or move its contents to target only when it's a directory. Should be used with /M or /F.
 ::              -- /S       If this feature set, this script will not gonna make link for Target <<===>> Link, but make links for Target\* <<===>> Link\*, except it is fetched by the ignore list in config file.
 ::
 ::              -- /D       Creates a directory symbolic link. Default is a file symbolic link.

@@ -1,7 +1,7 @@
 :mymklink       -- My make link
-::              -- /R       If the link file already exists and is a dorectory, and the target is a directory, then move it's contents to target, and then delete it. (implies /F)
 ::              -- /M       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
+::              -- /R       If the link file already exists, delete it or move its contents to target only when it's a directory. Should be used with /M or /F.
 ::              -- /S       If this feature set, this script will not gonna make link for Target <<===>> Link, but make links for Target\* <<===>> Link\*, except it is fetched by the ignore list in config file.
 ::
 ::              -- /D       Creates a directory symbolic link. Default is a file symbolic link.
@@ -214,10 +214,8 @@ goto :eof
     if not "%~1" == "" (
         set "arg1=%~1"
         if not "!arg1:~0,1!" == "/" (
-            if "!link!" == "" (
-                set "link=!arg1!"
-            ) else if "!target!" == "" (
-                set "target=!arg1!"
+            if "!link!" == "" ( set "link=!arg1!"
+            ) else if "!target!" == "" ( set "target=!arg1!"
             )
         ) else (
             set "arg1=!arg1:~1!"
@@ -228,18 +226,12 @@ goto :eof
 
                     rem ==============================
                     set "isOrgArg=0"
-                    if /i "!chr1!" == "R" (
-                        set "toMoveDir=1"
-                    ) else if /i "!chr1!" == "M" (
-                        set "toMove=1"
-                    ) else if /i "!chr1!" == "F" (
-                        set "toDelete=1"
-                    ) else if /i "!chr1!" == "D" (
-                        set "isOrgArg=1"
-                    ) else if /i "!chr1!" == "H" (
-                        set "isOrgArg=1"
-                    ) else if /i "!chr1!" == "J" (
-                        set "isOrgArg=1"
+                    if /i "!chr1!" == "R" ( set "toMoveDir=1"
+                    ) else if /i "!chr1!" == "M" ( set "toMove=1"
+                    ) else if /i "!chr1!" == "F" ( set "toDelete=1"
+                    ) else if /i "!chr1!" == "D" ( set "isOrgArg=1"
+                    ) else if /i "!chr1!" == "H" ( set "isOrgArg=1"
+                    ) else if /i "!chr1!" == "J" ( set "isOrgArg=1"
                     )
                     if "!isOrgArg!" == "1" (
                         set "orgArgs=!orgArgs! /!chr1!"
@@ -269,7 +261,7 @@ goto :eof
         if not "!toDelete!" == "1" (
             echo/The link "%link%" already exists, you can:
             echo/    ^(D^) Delete it
-            echo/    ^(M^) Move it's content into target and then delete it
+            echo/    ^(M^) Move its content into target and then delete it
             echo/    ^(C^) Cancel this operation
             :beforeSetPicking_1
             set "picking="
@@ -291,61 +283,125 @@ goto :eof
         set "doMove=0"
         set "doDelete=0"
         call getType "linkType" "%link%"
-        if "!toMoveDir!" == "1" (
-            if "!linkType!" == "DIR" set "doMove=1"
-            set "doDelete=1"
-        ) else if "!toMove!" == "1" (
-            if "!linkType!" == "DIR" (
-                set "doMove=1"
-                set "doDelete=1"
-            ) else if "!linkType!" == "JUNCTION" (
-                set "doMove=1"
-                set "doDelete=1"
-            ) else if "!linkType!" == "SYMLINKD" (
-                set "doMove=1"
+        if "!toMove!" == "1" (
+            if "!toMoveDir!" == "1" (
+                if "!linkType!" == "DIR" (
+                    set "doMove=1"
+                    set "doDelete=1"
+                )
+            ) else (
+                if "!linkType!" == "DIR" (
+                    set "doMove=1"
+                ) else if "!linkType!" == "JUNCTION" (
+                    set "doMove=1"
+                ) else if "!linkType!" == "SYMLINKD" (
+                    set "doMove=1"
+                )
                 set "doDelete=1"
             )
         ) else if "!toDelete!" == "1" (
             set "doDelete=1"
         )
+
         if "!doMove!" == "1" (
-            set "succlist="
-            set "faillist="
-            set succcount=0
-            set failcount=0
+            set "sset="
+            set "hset="
+            set "hsset="
+            for /f %%a in ('dir/b/as "%link%"') do set "sset=!sset! "%%~nxa""
+            for /f %%a in ('dir/b/ah "%link%"') do (
+                set broken=0
+                for %%i in (!sset!) do (
+                    if not "!broken!" == "1" if "%%~nxa" == "%%~i" set "broken=1"
+                )
+                if not "!broken!" == "1" ( set "hset=!hset! "%%~nxa""
+                ) else ( set "hsset=!hsset! "%%~nxa""
+                )
+            )
+            if not "!hsset!" == "" (
+                set "nsset="
+                for %%a in (!sset!) do (
+                    set broken=0
+                    for %%i in (!hsset!) do (
+                        if not "!broken!" == "1" if "%%~a" == "%%~i" set "broken=1"
+                    )
+                    if not "!broken!" == "1" set "nsset=!nsset! "%%~a""
+                )
+                set "sset=!nsset!"
+            )
+
+            set "succlist=" & set "faillist=" & set "skiplist="
+            set "succcount=0" & set "failcount=0" & set "skipcount=0"
             set breaked=0
-            for /f "tokens=*" %%a in ('dir/b/a "%link%"') do (
+            set "preArgs="
+            for /f "tokens=* delims=" %%a in ('dir/b/a "%link%"') do (
                 if !breaked! equ 0 (
-                    echo/Moving "%link%\%%~nxa" to "%target%" ......
-                    move /y "%link%\%%~nxa" "%target%"
-                    if !errorlevel! equ 0 (
-                        set /a succcount=succcount+1
-                        set "succlist=!succlist! "%%a""
+                    echo/
+                    attrib -s -h "%link%\%%~nxa" >nul 2>nul
+                    call mymove /e !preArgs! "%link%\%%~nxa" "%target%" "oper"
+                    if errorlevel 1 (
+                        set /a "failcount=failcount+1"
+                        set "faillist=!faillist! "%%~nxa""
+                    ) else if /i "!oper:~0,4!" == "skip" (
+                        set /a "skipcount=skipcount+1"
+                        set "skiplist=!skiplist! "%%~nxa""
                     ) else (
-                        set /a failcount=failcount+1
-                        set "faillist=!faillist! "%%a""
+                        set /a "succcount=succcount+1"
+                        set "succlist=!succlist! "%%~nxa""
+                    )
+                    if /i "!oper!" == "skipall" (
+                        set "preArgs=/s"
+                    ) else if /i "!oper!" == "replaceall" (
+                        set "preArgs=/r"
                     )
                 )
             )
-            echo/succ list:
-            for %%a in (!succlist!) do echo/    %link%\%%~a
-            echo/fail list:
-            for %%a in (!faillist!) do echo/    %link%\%%~a
-            echo/   !succcount! succ ^| !failcount! fail
-            if not "!failcount!" == "0" (
+            echo/
+            echo/Succ list:
+            for %%a in (!succlist!) do (
+                set "noquote=%%a"
+                set "noquote=%link%\!noquote:~1,-1!"
+                echo/    !noquote!
+            )
+            echo/Skip list:
+            for %%a in (!skiplist!) do (
+                set "noquote=%%a"
+                set "noquote=%link%\!noquote:~1,-1!"
+                echo/    !noquote!
+            )
+            echo/Fail list:
+            for %%a in (!faillist!) do (
+                set "noquote=%%a"
+                set "noquote=%link%\!noquote:~1,-1!"
+                echo/    !noquote!
+            )
+            echo/===== !succcount! succ ^| !skipcount! skip ^| !failcount! fail =====
+            if !failcount! neq 0 (
+                set "attrDest="
+                set shouldEnd=0
                 :beforeSetPicking_4
                 set "picking="
                 set /p "picking=Error(s) occurred, Ignore or Cancel? (I/C): "
                 if /i "!picking!" == "C" (
                     for %%a in (!succlist!) do (
-                        echo/Rolling back "%target%\%%~a" ......
+                        echo/Rollbacking "%target%\%%~a" ......
                         move /y "%target%\%%~a" "%link%"
                     )
-                    goto :eoa
-                ) else if /i not "!picking!" == "I" (
+                    set "attrDest=%link%"
+                    set shouldEnd=1
+                ) else if not "!picking!" == "I" (
+                    set "attrDest=%target%"
+                ) else (
                     goto :beforeSetPicking_4
                 )
+            ) else (
+                set "attrDest=%target%"
+                call delay 1000
             )
+
+            for %%a in (!hset!) do ( attrib -s +h "!attrDest!\%%~a" >nul 2>nul )
+            for %%a in (!sset!) do ( attrib +s -h "!attrDest!\%%~a" >nul 2>nul )
+            for %%a in (!hsset!) do ( attrib +s +h "!attrDest!\%%~a" >nul 2>nul )
+            if !shouldEnd! neq 0 goto :eoa
         )
 
         if "!doDelete!" == "1" (
@@ -362,15 +418,14 @@ goto :eof
             ) else if "!linkType!" == "JUNCTION" (
                 rd/q/s "%link%" && set "errlvl=0"
             ) else (
-        rd/q/s "%link%" && set "errlvl=0" || (
-            del/q/f/a "%link%" && set "errlvl=0"
-        )
+                rd/q/s "%link%" && set "errlvl=0" || (
+                    del/q/f/a "%link%" && set "errlvl=0"
+                )
             )
             if "!errlvl!" == "1" (
                 set "picking="
                 :beforeSetPicking_3
-                set "picking="
-                set /p "picking=Error occurred when deleting ^"%link%^" ^! ^(Retry/Cancel^): 
+                set /p "picking=Error occurred when deleting ""%link%""! (Retry/Cancel): "
                 if /i "!picking!" == "Retry" (
                     goto :beforeDeleteLink_1
                 ) else if /i "!picking!" == "R" (
