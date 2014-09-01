@@ -24,68 +24,70 @@ set "linkf=%~dp0%link%"
 set "targetf=%~dp0%target%"
 
 md "%link%"
-md "%link%\Dir"
-md "%link%\ExistingDir"
-md "%link%\DirWithSubfolder"
-md "%link%\DirWithSubFolder\Subfolder"
-md "%link%\ExistingDirWithSubFolder"
-md "%link%\ExistingDirWithSubFolder\Subfolder"
-md "%link%\DirWithSubfile"
-echo/%link%\DirWithSubfile\Subfile.txt>"%link%\DirWithSubfile\Subfile.txt"
-md "%link%\ExistingDirWithSubfile"
-echo/%link%\ExistingDirWithSubfile\Subfile.txt>"%link%\ExistingDirWithSubfile\Subfile.txt"
-md "%link%\DirectorySymbolinkTarget"
-mklink /d "%link%\DirectorySymbolink" "%linkf%\DirectorySymbolinkTarget"
-md "%link%\ExistingDirectorySymbolinkTarget"
-mklink /d "%link%\ExistingDirectorySymbolink" "%linkf%\ExistingDirectorySymbolinkTarget"
-md "%link%\DirectoryJunctionTarget"
-mklink /j "%link%\DirectoryJunction" "%link%\DirectoryJunctionTarget"
-md "%link%\ExistingDirectoryJunctionTarget"
-mklink /j "%link%\ExistingDirectoryJunction" "%link%\ExistingDirectoryJunctionTarget"
-echo/%link%\File.txt>"%link%\File.txt"
-echo/%link%\ExistingFile.txt>"%link%\ExistingFile.txt"
-echo/%link%\SymbolinkTarget.txt>"%link%\SymbolinkTarget.txt"
-mklink "%link%\Symbolink.txt" "%linkf%\SymbolinkTarget.txt"
-echo/%link%\ExistingSymbolinkTarget.txt>"%link%\ExistingSymbolinkTarget.txt"
-mklink "%link%\ExistingSymbolink.txt" "%linkf%\ExistingSymbolinkTarget.txt"
-echo/%link%\SystemAttributedFile.txt>"%link%\SystemAttributedFile.txt" && (
-    attrib +s -h "%link%\SystemAttributedFile.txt" )
-echo/%link%\HiddenAttributedFile.txt>"%link%\HiddenAttributedFile.txt" && (
-    attrib -s +h "%link%\HiddenAttributedFile.txt" )
-echo/%link%\SystemHiddenAttributedFile.txt>"%link%\SystemHiddenAttributedFile.txt" && (
-    attrib +s +h "%link%\SystemHiddenAttributedFile.txt" )
-echo/%link%\ReadonlyFile.txt>"%link%\ReadonlyFile.txt" && (
-    attrib +r "%link%\ReadonlyFile.txt" )
-echo/%link%\(HiddenSpecChar).txt>"%link%\(HiddenSpecChar).txt" && (
-    attrib -s +h "%link%\(HiddenSpecChar).txt" )
-echo/%link%\(x86).txt>"%link%\(x86).txt"
-echo/%link%\().txt>"%link%\().txt"
-md "%link%\DirDeniedAccess"
-cacls "%link%\DirDeniedAccess" /l /p %username%:n
-echo/%link%\FileDeniedAccess.txt>"%link%\FileDeniedAccess.txt"
-cacls "%link%\FileDeniedAccess.txt" /l /p %username%:n
-md "%link%\ExistingDirDeniedAccess"
-cacls "%link%\ExistingDirDeniedAccess" /l /p %username%:n
-echo/%link%\ExistingFileDeniedAccess.txt>"%link%\ExistingFileDeniedAccess.txt"
-cacls "%link%\ExistingFileDeniedAccess.txt" /l /p %username%:n
+rem md "%link%\Dir"
+rem md "%link%\ExistingDir"
+rem md "%link%\DirWithSubfolder"
+rem md "%link%\DirWithSubFolder\Subfolder"
+rem md "%link%\ExistingDirWithSubFolder"
+rem md "%link%\ExistingDirWithSubFolder\Subfolder"
+rem md "%link%\DirWithSubfile"
+rem echo/%link%\DirWithSubfile\Subfile.txt>"%link%\DirWithSubfile\Subfile.txt"
+rem md "%link%\ExistingDirWithSubfile"
+rem echo/%link%\ExistingDirWithSubfile\Subfile.txt>"%link%\ExistingDirWithSubfile\Subfile.txt"
+rem md "%link%\DirectorySymbolinkTarget"
+rem mklink /d "%link%\DirectorySymbolink" "%linkf%\DirectorySymbolinkTarget"
+rem md "%link%\ExistingDirectorySymbolinkTarget"
+rem mklink /d "%link%\ExistingDirectorySymbolink" "%linkf%\ExistingDirectorySymbolinkTarget"
+rem md "%link%\DirectoryJunctionTarget"
+rem mklink /j "%link%\DirectoryJunction" "%link%\DirectoryJunctionTarget"
+rem md "%link%\ExistingDirectoryJunctionTarget"
+rem mklink /j "%link%\ExistingDirectoryJunction" "%link%\ExistingDirectoryJunctionTarget"
+rem echo/%link%\File.txt>"%link%\File.txt"
+rem echo/%link%\ExistingFile.txt>"%link%\ExistingFile.txt"
+rem echo/%link%\SymbolinkTarget.txt>"%link%\SymbolinkTarget.txt"
+rem mklink "%link%\Symbolink.txt" "%linkf%\SymbolinkTarget.txt"
+rem echo/%link%\ExistingSymbolinkTarget.txt>"%link%\ExistingSymbolinkTarget.txt"
+rem mklink "%link%\ExistingSymbolink.txt" "%linkf%\ExistingSymbolinkTarget.txt"
+rem echo/%link%\SystemAttributedFile.txt>"%link%\SystemAttributedFile.txt" && (
+rem     attrib +s -h "%link%\SystemAttributedFile.txt" )
+rem echo/%link%\HiddenAttributedFile.txt>"%link%\HiddenAttributedFile.txt" && (
+rem     attrib -s +h "%link%\HiddenAttributedFile.txt" )
+rem echo/%link%\SystemHiddenAttributedFile.txt>"%link%\SystemHiddenAttributedFile.txt" && (
+rem     attrib +s +h "%link%\SystemHiddenAttributedFile.txt" )
+rem echo/%link%\ReadonlyFile.txt>"%link%\ReadonlyFile.txt" && (
+rem     attrib +r "%link%\ReadonlyFile.txt" )
+rem echo/%link%\(HiddenSpecChar).txt>"%link%\(HiddenSpecChar).txt" && (
+rem     attrib -s +h "%link%\(HiddenSpecChar).txt" )
+md "%link%\Dir Name With Space Chr"
+echo/%link%\File Name With Space Chr.txt>"%link%\File Name With Space Chr.txt"
+rem echo/%link%\(x86).txt>"%link%\(x86).txt"
+rem echo/%link%\().txt>"%link%\().txt"
+rem md "%link%\DirDeniedAccess"
+rem cacls "%link%\DirDeniedAccess" /l /p %username%:n
+rem echo/%link%\FileDeniedAccess.txt>"%link%\FileDeniedAccess.txt"
+rem cacls "%link%\FileDeniedAccess.txt" /l /p %username%:n
+rem md "%link%\ExistingDirDeniedAccess"
+rem cacls "%link%\ExistingDirDeniedAccess" /l /p %username%:n
+rem echo/%link%\ExistingFileDeniedAccess.txt>"%link%\ExistingFileDeniedAccess.txt"
+rem cacls "%link%\ExistingFileDeniedAccess.txt" /l /p %username%:n
 
 md "%target%"
-md "%target%\ExistingDir"
-md "%target%\ExistingDirWithSubFolder"
-md "%target%\ExistingDirWithSubFolder\Subfolder"
-md "%target%\ExistingDirWithSubfile"
-echo/%target%\ExistingDirWithSubfile\Subfile.txt>"%target%\ExistingDirWithSubfile\Subfile.txt"
-md "%target%\ExistingDirectorySymbolinkTarget"
-mklink /d "%target%\ExistingDirectorySymbolink" "%targetf%\ExistingDirectorySymbolinkTarget"
-md "%target%\ExistingDirectoryJunctionTarget"
-mklink /j "%target%\ExistingDirectoryJunction" "%target%\ExistingDirectoryJunctionTarget"
-echo/%target%\ExistingFile.txt>"%target%\ExistingFile.txt"
-echo/%target%\ExistingSymbolinkTarget.txt>"%target%\ExistingSymbolinkTarget.txt"
-mklink "%target%\ExistingSymbolink.txt" "%targetf%\ExistingSymbolinkTarget.txt"
-md "%target%\ExistingDirDeniedAccess"
-cacls "%target%\ExistingDirDeniedAccess" /l /p %username%:n
-echo/%target%\ExistingFileDeniedAccess.txt>"%target%\ExistingFileDeniedAccess.txt"
-cacls "%target%\ExistingFileDeniedAccess.txt" /l /p %username%:n
+rem md "%target%\ExistingDir"
+rem md "%target%\ExistingDirWithSubFolder"
+rem md "%target%\ExistingDirWithSubFolder\Subfolder"
+rem md "%target%\ExistingDirWithSubfile"
+rem echo/%target%\ExistingDirWithSubfile\Subfile.txt>"%target%\ExistingDirWithSubfile\Subfile.txt"
+rem md "%target%\ExistingDirectorySymbolinkTarget"
+rem mklink /d "%target%\ExistingDirectorySymbolink" "%targetf%\ExistingDirectorySymbolinkTarget"
+rem md "%target%\ExistingDirectoryJunctionTarget"
+rem mklink /j "%target%\ExistingDirectoryJunction" "%target%\ExistingDirectoryJunctionTarget"
+rem echo/%target%\ExistingFile.txt>"%target%\ExistingFile.txt"
+rem echo/%target%\ExistingSymbolinkTarget.txt>"%target%\ExistingSymbolinkTarget.txt"
+rem mklink "%target%\ExistingSymbolink.txt" "%targetf%\ExistingSymbolinkTarget.txt"
+rem md "%target%\ExistingDirDeniedAccess"
+rem cacls "%target%\ExistingDirDeniedAccess" /l /p %username%:n
+rem echo/%target%\ExistingFileDeniedAccess.txt>"%target%\ExistingFileDeniedAccess.txt"
+rem cacls "%target%\ExistingFileDeniedAccess.txt" /l /p %username%:n
 
 start "" "."
 

@@ -330,13 +330,13 @@ goto :eof
             )
 
             set "succlist=" & set "faillist=" & set "skiplist="
-            set succcount=0 & set failcount=0 & set skipcount=0
+            set "succcount=0" & set "failcount=0" & set "skipcount=0"
             set breaked=0
             set "preArgs="
-            for /f %%a in ('dir/b/a "%link%"') do (
+            for /f "tokens=* delims=" %%a in ('dir/b/a "%link%"') do (
                 if !breaked! equ 0 (
                     echo/
-                    attrib -s -h "%link%\%%~nxa"
+                    attrib -s -h "%link%\%%~nxa" >nul 2>nul
                     call mymove /e !preArgs! "%link%\%%~nxa" "%target%" "oper"
                     if errorlevel 1 (
                         set /a "failcount=failcount+1"
@@ -375,7 +375,7 @@ goto :eof
                 echo/    !noquote!
             )
             echo/===== !succcount! succ ^| !skipcount! skip ^| !failcount! fail =====
-            if not "!failcount!" == "0" (
+            if !failcount! neq 0 (
                 set "attrDest="
                 set shouldEnd=0
                 :beforeSetPicking_4
@@ -398,9 +398,9 @@ goto :eof
                 call delay 1000
             )
 
-            for %%a in (!hset!) do attrib -s +h "!attrDest!\%%~a"
-            for %%a in (!sset!) do attrib +s -h "!attrDest!\%%~a"
-            for %%a in (!hsset!) do attrib +s +h "!attrDest!\%%~a"
+            for %%a in (!hset!) do ( attrib -s +h "!attrDest!\%%~a" >nul 2>nul )
+            for %%a in (!sset!) do ( attrib +s -h "!attrDest!\%%~a" >nul 2>nul )
+            for %%a in (!hsset!) do ( attrib +s +h "!attrDest!\%%~a" >nul 2>nul )
             if !shouldEnd! neq 0 goto :eoa
         )
 
