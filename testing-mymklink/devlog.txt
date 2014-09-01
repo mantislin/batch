@@ -1,6 +1,7 @@
-﻿1. 解决 move 不能替换已存在的文件夹的问题 -- 已解决
-2. 移动、回滚后的属性回设 -- 已解决
-3. 忽略错误 / 出错则回滚 选项的预设 -- 放弃
+﻿Version 1.0
+1. 解决 move 不能替换已存在的文件夹的问题 -- 已解决 2014-08-31
+2. 移动、回滚后的属性回设 -- 已解决 2014-08-31
+3. 忽略错误 / 出错则回滚 选项的预设 -- 放弃 2014-09-01
 4. 目标名称中含有空格时会出错 -- 已解决 2014-09-01
-5. Remind there was error but exactly there is no error. -- fixed
-6.2014-09-01
+5. Remind there was error but exactly there is no error. -- fixed 2014-09-01
+
