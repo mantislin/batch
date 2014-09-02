@@ -1,8 +1,8 @@
 ﻿Version 1.0
-1. bug      解决 move 不能替换已存在的文件夹的问题 -- 已解决 2014-08-31
-2. plan     移动、回滚后的属性回设 -- 已解决 2014-08-31
-3. plan     忽略错误 / 出错则回滚 选项的预设 -- 放弃 2014-09-01
-4. bug      目标名称中含有空格时会出错 -- 已解决 2014-09-01
-5. bug      Remind there was error but exactly there is no error. -- fixed 2014-09-01
-6. bug      crashed when use /s option and the link file (folder) is empty
-7. bug      just used /f option but mymklink.bat tried to move link's contents to target
+1. BUG      解决 move 不能替换已存在的文件夹的问题 -- 已解决 2014-08-31
+2. PLAN     移动、回滚后的属性回设 -- 已解决 2014-08-31
+3. PLAN     忽略错误 / 出错则回滚 选项的预设 -- 放弃 2014-09-01
+4. BUG      目标名称中含有空格时会出错 -- 已解决 2014-09-01
+5. BUG      Remind there was error but exactly there is no error. -- FIXED 2014-09-01
+6. BUG      Crashed when use /s option and the link file (folder) is empty. -- NOT FOUND 2014-09-02
+7. BUG      Just used /f option but mymklink.bat tried to move link's contents to target. -- FIXED 2014-09-01

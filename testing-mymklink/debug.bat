@@ -7,18 +7,18 @@ rem set "target=target"
 
 call :getready
 echo/
-pause
-call "%~dp0mymklink.bat" /j /r "%link%" "%target%"
+call "%~dp0mymklink.bat" /j /f /r "%link%" "%target%"
 
 :eoa
 endlocal
 goto :eof
 
 :getready
-cacls "%link%" /t /l /p %username%:f
-cacls "%target%" /t /l /p %username%:f
+echo/y|cacls "%link%" /t /l /p %username%:f
+echo/y|cacls "%target%" /t /l /p %username%:f
 rd/q/s "%link%"
 rd/q/s "%target%"
+pause
 
 set "linkf=%~dp0%link%"
 set "targetf=%~dp0%target%"
@@ -58,18 +58,18 @@ rem echo/%link%\ReadonlyFile.txt>"%link%\ReadonlyFile.txt" && (
 rem     attrib +r "%link%\ReadonlyFile.txt" )
 rem echo/%link%\(HiddenSpecChar).txt>"%link%\(HiddenSpecChar).txt" && (
 rem     attrib -s +h "%link%\(HiddenSpecChar).txt" )
-md "%link%\Dir Name With Space Chr"
-echo/%link%\File Name With Space Chr.txt>"%link%\File Name With Space Chr.txt"
+rem md "%link%\Dir Name With Space Chr"
+rem echo/%link%\File Name With Space Chr.txt>"%link%\File Name With Space Chr.txt"
 rem echo/%link%\(x86).txt>"%link%\(x86).txt"
 rem echo/%link%\().txt>"%link%\().txt"
 rem md "%link%\DirDeniedAccess"
-rem cacls "%link%\DirDeniedAccess" /l /p %username%:n
+rem echo/y|cacls "%link%\DirDeniedAccess" /l /p %username%:n
 rem echo/%link%\FileDeniedAccess.txt>"%link%\FileDeniedAccess.txt"
-rem cacls "%link%\FileDeniedAccess.txt" /l /p %username%:n
+rem echo/y|cacls "%link%\FileDeniedAccess.txt" /l /p %username%:n
 rem md "%link%\ExistingDirDeniedAccess"
-rem cacls "%link%\ExistingDirDeniedAccess" /l /p %username%:n
+rem echo/y|cacls "%link%\ExistingDirDeniedAccess" /l /p %username%:n
 rem echo/%link%\ExistingFileDeniedAccess.txt>"%link%\ExistingFileDeniedAccess.txt"
-rem cacls "%link%\ExistingFileDeniedAccess.txt" /l /p %username%:n
+rem echo/y|cacls "%link%\ExistingFileDeniedAccess.txt" /l /p %username%:n
 
 md "%target%"
 rem md "%target%\ExistingDir"
@@ -85,9 +85,10 @@ rem echo/%target%\ExistingFile.txt>"%target%\ExistingFile.txt"
 rem echo/%target%\ExistingSymbolinkTarget.txt>"%target%\ExistingSymbolinkTarget.txt"
 rem mklink "%target%\ExistingSymbolink.txt" "%targetf%\ExistingSymbolinkTarget.txt"
 rem md "%target%\ExistingDirDeniedAccess"
-rem cacls "%target%\ExistingDirDeniedAccess" /l /p %username%:n
+rem echo/y|cacls "%target%\ExistingDirDeniedAccess" /l /p %username%:n
 rem echo/%target%\ExistingFileDeniedAccess.txt>"%target%\ExistingFileDeniedAccess.txt"
-rem cacls "%target%\ExistingFileDeniedAccess.txt" /l /p %username%:n
+rem echo/y|cacls "%target%\ExistingFileDeniedAccess.txt" /l /p %username%:n
+pause
 
 start "" "."
 

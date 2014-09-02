@@ -191,9 +191,9 @@ goto :eof
 goto :eof
 :: =============================================================================
 :makelink       -- My make link
-::              -- /R       If the link file already exists then delete it, and only when it is a directory, move it's contents to target. (implies /F)
 ::              -- /M       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
+::              -- /R       If the link file already exists, delete it or move its contents to target only when it's a directory. Should be used with /M or /F.
 ::
 ::              -- /D       Creates a directory symbolic link. Default is a file symbolic link.
 ::              -- /H       Creates a hard link instead of a symbolic link.
@@ -255,7 +255,7 @@ goto :eof
     )
 
     if exist "%link%" (
-        if "!toMoveDir!" == "1" set "toMove=1"
+        rem if "!toMoveDir!" == "1" set "toMove=1"
         if "!toMove!" == "1" set "toDelete=1"
 
         if not "!toDelete!" == "1" (
@@ -277,43 +277,42 @@ goto :eof
             )
         )
 
-        if "!toMoveDir!" == "1" set "toMove=1"
+        rem if "!toMoveDir!" == "1" set "toMove=1"
         if "!toMove!" == "1" set "toDelete=1"
 
         set "doMove=0"
         set "doDelete=0"
         call getType "linkType" "%link%"
-        if "!toMove!" == "1" (
-            if "!toMoveDir!" == "1" (
-                if "!linkType!" == "DIR" (
+        if !toMove! equ 1 (
+            if !toMoveDir! equ 1 (
+                if /i "!linkType!" == "DIR" (
                     set "doMove=1"
                     set "doDelete=1"
                 )
             ) else (
-                if "!linkType!" == "DIR" (
-                    set "doMove=1"
-                ) else if "!linkType!" == "JUNCTION" (
-                    set "doMove=1"
-                ) else if "!linkType!" == "SYMLINKD" (
-                    set "doMove=1"
+                if /i "!linkType!" == "DIR" ( set doMove=1
+                ) else if /i "!linkType!" == "JUNCTION" ( set doMove=1
+                ) else if /i "!linkType!" == "SYMLINKD" ( set doMove=1
                 )
                 set "doDelete=1"
             )
-        ) else if "!toDelete!" == "1" (
-            set "doDelete=1"
+        ) else if !toDelete! equ 1 (
+            if !toMoveDir! equ 1 ( if /i "!linkType!" == "DIR" set "doDelete=1"
+            ) else ( set doDelete=1
+            )
         )
 
-        if "!doMove!" == "1" (
-            set "sset="
-            set "hset="
-            set "hsset="
-            for /f %%a in ('dir/b/as "%link%"') do set "sset=!sset! "%%~nxa""
-            for /f %%a in ('dir/b/ah "%link%"') do (
+        if !doMove! equ 1 (
+            set "sset=" & set "hset=" & set "hsset="
+            for /f "tokens=* delims=" %%a in ('dir/b/as "%link%" 2^>nul') do (
+                set "sset=!sset! "%%~nxa""
+            )
+            for /f "tokens=* delims=" %%a in ('dir/b/ah "%link%" 2^>nul') do (
                 set broken=0
                 for %%i in (!sset!) do (
-                    if not "!broken!" == "1" if "%%~nxa" == "%%~i" set "broken=1"
+                    if !broken! neq 1 if "%%~nxa" == "%%~i" set broken=1
                 )
-                if not "!broken!" == "1" ( set "hset=!hset! "%%~nxa""
+                if !broken! neq 1 ( set "hset=!hset! "%%~nxa""
                 ) else ( set "hsset=!hsset! "%%~nxa""
                 )
             )
@@ -322,9 +321,9 @@ goto :eof
                 for %%a in (!sset!) do (
                     set broken=0
                     for %%i in (!hsset!) do (
-                        if not "!broken!" == "1" if "%%~a" == "%%~i" set "broken=1"
+                        if !broken! neq 1 if "%%~a" == "%%~i" set broken=1
                     )
-                    if not "!broken!" == "1" set "nsset=!nsset! "%%~a""
+                    if !broken! neq 1 set "nsset=!nsset! "%%~a""
                 )
                 set "sset=!nsset!"
             )
@@ -336,7 +335,7 @@ goto :eof
             for /f "tokens=* delims=" %%a in ('dir/b/a "%link%"') do (
                 if !breaked! equ 0 (
                     echo/
-                    attrib -s -h "%link%\%%~nxa" >nul 2>nul
+                    attrib -s -h "%link%\%%~nxa">nul 2>nul
                     call mymove /e !preArgs! "%link%\%%~nxa" "%target%" "oper"
                     if errorlevel 1 (
                         set /a "failcount=failcount+1"
@@ -398,9 +397,9 @@ goto :eof
                 call delay 1000
             )
 
-            for %%a in (!hset!) do ( attrib -s +h "!attrDest!\%%~a" >nul 2>nul )
-            for %%a in (!sset!) do ( attrib +s -h "!attrDest!\%%~a" >nul 2>nul )
-            for %%a in (!hsset!) do ( attrib +s +h "!attrDest!\%%~a" >nul 2>nul )
+            for %%a in (!hset!) do ( attrib -s +h "!attrDest!\%%~a">nul 2>nul )
+            for %%a in (!sset!) do ( attrib +s -h "!attrDest!\%%~a">nul 2>nul )
+            for %%a in (!hsset!) do ( attrib +s +h "!attrDest!\%%~a">nul 2>nul )
             if !shouldEnd! neq 0 goto :eoa
         )
 
@@ -449,7 +448,7 @@ goto :eof
         if "!errorlevel!" == "0" set "toUseFullPath=1"
     )
     if "%toUseFullPath%" == "1" (
-        for /f "tokens=*" %%a in ("%target%") do set "target=%%~dpnxa"
+        for /f "tokens=* delims=" %%a in ("%target%") do set "target=%%~dpnxa"
     )
     mklink %orgArgs% "%link%" "%target%"
 
