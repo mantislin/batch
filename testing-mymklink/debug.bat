@@ -7,7 +7,7 @@ rem set "target=target"
 
 call :getready
 echo/
-call "%~dp0mymklink.bat" /j /f /r "%link%" "%target%"
+call "%~dp0mymklink.bat" /j /r "%link%" "%target%"
 
 :eoa
 endlocal
@@ -28,26 +28,26 @@ rem md "%link%\Dir"
 rem md "%link%\ExistingDir"
 rem md "%link%\DirWithSubfolder"
 rem md "%link%\DirWithSubFolder\Subfolder"
-rem md "%link%\ExistingDirWithSubFolder"
-rem md "%link%\ExistingDirWithSubFolder\Subfolder"
+md "%link%\ExistingDirWithSubFolder"
+md "%link%\ExistingDirWithSubFolder\Subfolder"
 rem md "%link%\DirWithSubfile"
 rem echo/%link%\DirWithSubfile\Subfile.txt>"%link%\DirWithSubfile\Subfile.txt"
-rem md "%link%\ExistingDirWithSubfile"
-rem echo/%link%\ExistingDirWithSubfile\Subfile.txt>"%link%\ExistingDirWithSubfile\Subfile.txt"
+md "%link%\ExistingDirWithSubfile"
+echo/%link%\ExistingDirWithSubfile\Subfile.txt>"%link%\ExistingDirWithSubfile\Subfile.txt"
 rem md "%link%\DirectorySymbolinkTarget"
 rem mklink /d "%link%\DirectorySymbolink" "%linkf%\DirectorySymbolinkTarget"
-rem md "%link%\ExistingDirectorySymbolinkTarget"
+md "%link%\ExistingDirectorySymbolinkTarget"
 rem mklink /d "%link%\ExistingDirectorySymbolink" "%linkf%\ExistingDirectorySymbolinkTarget"
 rem md "%link%\DirectoryJunctionTarget"
 rem mklink /j "%link%\DirectoryJunction" "%link%\DirectoryJunctionTarget"
-rem md "%link%\ExistingDirectoryJunctionTarget"
-rem mklink /j "%link%\ExistingDirectoryJunction" "%link%\ExistingDirectoryJunctionTarget"
+md "%link%\ExistingDirectoryJunctionTarget"
+mklink /j "%link%\ExistingDirectoryJunction" "%link%\ExistingDirectoryJunctionTarget"
 rem echo/%link%\File.txt>"%link%\File.txt"
-rem echo/%link%\ExistingFile.txt>"%link%\ExistingFile.txt"
+echo/%link%\ExistingFile.txt>"%link%\ExistingFile.txt"
 rem echo/%link%\SymbolinkTarget.txt>"%link%\SymbolinkTarget.txt"
 rem mklink "%link%\Symbolink.txt" "%linkf%\SymbolinkTarget.txt"
-rem echo/%link%\ExistingSymbolinkTarget.txt>"%link%\ExistingSymbolinkTarget.txt"
-rem mklink "%link%\ExistingSymbolink.txt" "%linkf%\ExistingSymbolinkTarget.txt"
+echo/%link%\ExistingSymbolinkTarget.txt>"%link%\ExistingSymbolinkTarget.txt"
+mklink "%link%\ExistingSymbolink.txt" "%linkf%\ExistingSymbolinkTarget.txt"
 rem echo/%link%\SystemAttributedFile.txt>"%link%\SystemAttributedFile.txt" && (
 rem     attrib +s -h "%link%\SystemAttributedFile.txt" )
 rem echo/%link%\HiddenAttributedFile.txt>"%link%\HiddenAttributedFile.txt" && (
@@ -66,27 +66,27 @@ rem md "%link%\DirDeniedAccess"
 rem echo/y|cacls "%link%\DirDeniedAccess" /l /p %username%:n
 rem echo/%link%\FileDeniedAccess.txt>"%link%\FileDeniedAccess.txt"
 rem echo/y|cacls "%link%\FileDeniedAccess.txt" /l /p %username%:n
-rem md "%link%\ExistingDirDeniedAccess"
+md "%link%\ExistingDirDeniedAccess"
 rem echo/y|cacls "%link%\ExistingDirDeniedAccess" /l /p %username%:n
-rem echo/%link%\ExistingFileDeniedAccess.txt>"%link%\ExistingFileDeniedAccess.txt"
+echo/%link%\ExistingFileDeniedAccess.txt>"%link%\ExistingFileDeniedAccess.txt"
 rem echo/y|cacls "%link%\ExistingFileDeniedAccess.txt" /l /p %username%:n
 
 md "%target%"
-rem md "%target%\ExistingDir"
-rem md "%target%\ExistingDirWithSubFolder"
-rem md "%target%\ExistingDirWithSubFolder\Subfolder"
-rem md "%target%\ExistingDirWithSubfile"
-rem echo/%target%\ExistingDirWithSubfile\Subfile.txt>"%target%\ExistingDirWithSubfile\Subfile.txt"
-rem md "%target%\ExistingDirectorySymbolinkTarget"
-rem mklink /d "%target%\ExistingDirectorySymbolink" "%targetf%\ExistingDirectorySymbolinkTarget"
-rem md "%target%\ExistingDirectoryJunctionTarget"
-rem mklink /j "%target%\ExistingDirectoryJunction" "%target%\ExistingDirectoryJunctionTarget"
-rem echo/%target%\ExistingFile.txt>"%target%\ExistingFile.txt"
-rem echo/%target%\ExistingSymbolinkTarget.txt>"%target%\ExistingSymbolinkTarget.txt"
-rem mklink "%target%\ExistingSymbolink.txt" "%targetf%\ExistingSymbolinkTarget.txt"
-rem md "%target%\ExistingDirDeniedAccess"
+md "%target%\ExistingDir"
+md "%target%\ExistingDirWithSubFolder"
+md "%target%\ExistingDirWithSubFolder\Subfolder"
+md "%target%\ExistingDirWithSubfile"
+echo/%target%\ExistingDirWithSubfile\Subfile.txt>"%target%\ExistingDirWithSubfile\Subfile.txt"
+md "%target%\ExistingDirectorySymbolinkTarget"
+mklink /d "%target%\ExistingDirectorySymbolink" "%targetf%\ExistingDirectorySymbolinkTarget"
+md "%target%\ExistingDirectoryJunctionTarget"
+mklink /j "%target%\ExistingDirectoryJunction" "%target%\ExistingDirectoryJunctionTarget"
+echo/%target%\ExistingFile.txt>"%target%\ExistingFile.txt"
+echo/%target%\ExistingSymbolinkTarget.txt>"%target%\ExistingSymbolinkTarget.txt"
+mklink "%target%\ExistingSymbolink.txt" "%targetf%\ExistingSymbolinkTarget.txt"
+md "%target%\ExistingDirDeniedAccess"
 rem echo/y|cacls "%target%\ExistingDirDeniedAccess" /l /p %username%:n
-rem echo/%target%\ExistingFileDeniedAccess.txt>"%target%\ExistingFileDeniedAccess.txt"
+echo/%target%\ExistingFileDeniedAccess.txt>"%target%\ExistingFileDeniedAccess.txt"
 rem echo/y|cacls "%target%\ExistingFileDeniedAccess.txt" /l /p %username%:n
 pause
 

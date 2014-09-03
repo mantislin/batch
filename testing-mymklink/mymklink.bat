@@ -403,7 +403,7 @@ goto :eof
             if !shouldEnd! neq 0 goto :eoa
         )
 
-        if "!doDelete!" == "1" (
+        if !doDelete! equ 1 (
             :beforeDeleteLink_1
             set "errlvl=1"
             if "!linkType!" == "FILE" (
@@ -421,7 +421,7 @@ goto :eof
                     del/q/f/a "%link%" && set "errlvl=0"
                 )
             )
-            if "!errlvl!" == "1" (
+            if !errlvl! geq 1 (
                 set "picking="
                 :beforeSetPicking_3
                 set /p "picking=Error occurred when deleting ""%link%""! (Retry/Cancel): "
@@ -440,14 +440,14 @@ goto :eof
         )
     )
 
-    set "toUseFullPath=0"
+    set toUseFullPath=0
     if "%orgArgs%" == "" (
-        set "toUseFullPath=1"
+        set toUseFullPath=1
     ) else (
-        echo/%orgArgs% | find /i "/D">nul 2>nul
-        if "!errorlevel!" == "0" set "toUseFullPath=1"
+        echo/%orgArgs%| find /i "/D">nul 2>nul
+        if not errorlevel 1 set toUseFullPath=1
     )
-    if "%toUseFullPath%" == "1" (
+    if %toUseFullPath% equ 1 (
         for /f "tokens=* delims=" %%a in ("%target%") do set "target=%%~dpnxa"
     )
     mklink %orgArgs% "%link%" "%target%"
