@@ -16,16 +16,16 @@ REM ============================================================================
 :setter
 @if %~1 equ 0 (
     REG ADD HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v AutoRun /t reg_dword /d 0 /f
-    REG ADD HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 000000FF /f
+    REG ADD HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 255 /f
     REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cdrom /v AutoRun /t reg_dword /d 0 /f
     REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\floppy /v AutoRun /t reg_dword /d 0 /f
-    REG ADD HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 00000091 /f
-    REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon /v AllocateCDRoms /t reg_sz /d "0" /f
+    REG ADD HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 145 /f
+    REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AllocateCDRoms /t reg_sz /d "0" /f
 ) else if %~1 equ 1 (
     REG ADD HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v AutoRun /t reg_dword /d 1 /f
-    REG ADD HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 00000091 /f
+    REG ADD HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 145 /f
     REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\cdrom /v AutoRun /t reg_dword /d 1 /f
     REG ADD HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\floppy /v AutoRun /t reg_dword /d 1 /f
     REG ADD HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoDriveTypeAutoRun /t reg_dword /d 0 /f
-    REG DELETE HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon /v AllocateCDRoms /f
+    REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AllocateCDRoms /f
 )
