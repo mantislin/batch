@@ -6,3 +6,4 @@
 5. BUG      Remind there was error but exactly there is no error. -- FIXED 2014-09-01
 6. BUG      Crashed when use /s option and the link file (folder) is empty. -- NOT FOUND 2014-09-02
 7. BUG      Just used /f option but mymklink.bat tried to move link's contents to target. -- FIXED 2014-09-01
+8. BUG      Error on counting number of succ, skip and fail. Can test it with "%AppData%\SPlayer\SVPSub" <<===>> "%tdd%\subtitles"
