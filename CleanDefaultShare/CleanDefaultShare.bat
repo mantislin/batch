@@ -1,5 +1,37 @@
 @echo off
+
+REM --> Check for permissions
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+if '%errorlevel%' NEQ '0' (
+    echo Requesting administrative privileges...
+    goto :UACPrompt
+) else ( goto :gotAdmin )
+
+:UACPrompt
+    SETLOCAL ENABLEDELAYEDEXPANSION
+    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+    set params=%*
+    if "%params%" NEQ "" (
+        set params=%params:"=""%
+        set "params= !params!"
+    )
+    echo UAC.ShellExecute "cmd.exe", "/c %~s0%params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
+    "%temp%\getadmin.vbs"
+    del "%temp%\getadmin.vbs"
+    ENDLOCAL
+    exit /B
+
+:gotAdmin
+    pushd "%CD%"
+    CD /D "%~dp0"
+
+:--------------------------------------
+
+@echo off
 setlocal enabledelayedexpansion
+
+set errcount=0
 
 rem check status of "server" service
 rem >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -59,11 +91,11 @@ for /f "tokens=* delims=" %%a in (%pt0%temp.txt) do (
             !or! >nul 2>nul && (
                 echo.  Operation success.
             ) || (
+                set /a errcount=errcount+1
                 echo.  Operation fail.
             )
         )
     )
-    rem index¿ØÖÆ
     if !index! EQU !count! set "index=0"
     set /a "index=index+1"
 )
@@ -89,6 +121,7 @@ for /f "tokens=1,2 delims==" %%a in (%pt0%temp.txt) do (
             net share "%%d" /del >nul 2>nul && (
                 echo.  %%a %%d delete success!
             ) || (
+                set /a errcount=errcount+1
                 echo.  %%a %%d delete failed!
             )
         )
@@ -103,6 +136,7 @@ del/q/f %pt0%temp.txt
 rem <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 echo.
 echo.All done.
+if %errcount% geq 1 pause
 goto :thend
 
 reg add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "AutoShareServer" /t REG_DWORD /d 0 /f
