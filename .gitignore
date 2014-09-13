@@ -38,3 +38,5 @@ Icon
 # Batch Scripts
 EnvSetter/*.reg
 RegSetter/*.log
+testing-*/link
+testing-*/target

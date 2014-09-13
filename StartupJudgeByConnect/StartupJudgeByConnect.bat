@@ -2,7 +2,9 @@
 setlocal enabledelayedexpansion
 
 for /f "usebackq" %%i in (`hostname`) do set "hostname=%%i"
+set "run_script=RunFile.vbs"
 set "config_file=%~n0_%hostname%.ini"
+rem set "config_file=test.ini"
 set "delay_time_start=1"
 set "delay_time_end=1"
 echo/
@@ -13,11 +15,16 @@ for /f "usebackq tokens=* eol=; delims=" %%a in ("%~sdp0%config_file%") do (
 )
 if "%count%"=="0" (
     echo   Nothing will be started, just enjoy your time ...
-    goto :eoself
+    goto :eoa
+)
+
+if not exist "%~dp0%run_script%" (
+    echo/Set WshShell = WScript.CreateObject^("WScript.Shell"^)>"%~dp0%run_script%"
+    echo/WshShell.Run WScript.Arguments^(0^)>>"%~dp0%run_script%"
 )
 
 echo   Start program after %delay_time_start% seconds...
-call :delay %delay_time_start%
+call "%batch_bin%\delay.bat" %delay_time_start%
 echo/   ========================================
 set "succlist="
 set "faillist="
@@ -41,7 +48,8 @@ for /f "usebackq tokens=* eol=; delims=" %%a in ("%~sdp0%config_file%") do (
 
         if "!state!" == "1" (
             echo/++++ start : %%b, starting......
-            start /min "" "%%c"
+            rem start /min "" cmd.exe "/c %%c"
+            start /min "" "%~dp0%run_script%" "%%c"
         ) else if "!state!" == "0" (
             echo/---- skip : %%b
         ) else (
@@ -74,8 +82,8 @@ for /f "usebackq tokens=* eol=; delims=" %%a in ("%~sdp0%config_file%") do (
 echo/   ========================================
 echo   Exit program after %delay_time_end% second(s).
 
-:eoself
-    call :delay %delay_time_end% >nul 2>nul
+:eoa
+    call "%batch_bin%\delay.bat" %delay_time_end% >nul 2>nul
     endlocal
     exit/b
 

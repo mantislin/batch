@@ -2,11 +2,11 @@
 ::              -- Interval     how long to delay (ms).
 ::                      if interval is not set, will default to 1000 mss.
 @echo off
-setlocal
+setlocal disabledelayedexpansion
 
 set "interval=%~1"
 if %interval% leq 0 set interval=0
-ping 192.0.2.2 -n 1 -w %interval% > nul 2>nul
+ping 192.0.2.2 -n 1 -w %interval% >nul 2>nul
 
 rem set "interval=%~1"
 rem if "%interval%" == "" set interval=1000
