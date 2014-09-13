@@ -46,7 +46,7 @@ rem no need to clean default services.
 if ser equ 0 (
     echo.
     echo.  LanmanServer is not running!
-    goto :thend
+    goto :eoa
 )
 rem <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -137,13 +137,13 @@ rem <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 echo.
 echo.All done.
 if %errcount% geq 1 pause
-goto :thend
+goto :eoa
 
 reg add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "AutoShareServer" /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\services\LanmanServer\Parameters" /v "AutoShareWks" /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Lsa" /v "restrictanonymous" /t REG_DWORD /d 1 /f
 pause
 
-:thend
+:eoa
 endlocal
 exit/b
