@@ -7,7 +7,7 @@ set "un=%~1"
 set "dun=shared"
 if "%un%" == "" set "un=shared"
 
-if exist "%AppData%\Mozilla-%un%" (
+if exist "%AppData%\Mozilla\Firefox-%un%" (
     set "cun="
     if /i "%un%" == "mts" (
         set "cun=shared"
@@ -17,10 +17,10 @@ if exist "%AppData%\Mozilla-%un%" (
     REM echo un = %un%
     REM echo cun = !cun!
     REM goto :end
-    pushd "%AppData%"
+    pushd "%AppData%\Mozilla"
     taskkill /im firefox.exe /f >nul 2>nul
-    ren "Mozilla" "Mozilla-!cun!"
-    ren "Mozilla-%un%" "Mozilla"
+    ren "Firefox" "Firefox-!cun!"
+    ren "Firefox-%un%" "Firefox"
     popd
     pushd "%AppData%\..\Local"
     taskkill /im evernote.exe /f >nul 2>nul
