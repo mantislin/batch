@@ -20,7 +20,7 @@ if "%count%"=="0" (
 
 if not exist "%~dp0%run_script%" (
     echo/Set WshShell = WScript.CreateObject^("WScript.Shell"^)>"%~dp0%run_script%"
-    echo/WshShell.Run WScript.Arguments^(0^)>>"%~dp0%run_script%"
+    echo/WshShell.Run WScript.Arguments^(0^), 7 >>"%~dp0%run_script%"
 )
 
 echo   Start program after %delay_time_start% seconds...
