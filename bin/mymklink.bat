@@ -1,3 +1,4 @@
+:: =============================================================================
 :mymklink       -- My make link
 ::              -- /M       If the link file already exists and is a directory, directory symbolink or directory junction, and the target is a directory, then move it's content to target folder, and then delete it. (implies /F)
 ::              -- /F       If the link file already exists, delete it without ask.
