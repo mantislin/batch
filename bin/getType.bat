@@ -1,3 +1,4 @@
+:: =============================================================================
 :getType            -- Get type of target.
 ::                  -- %~1 Not null, return the link type.
 ::                          <empty>     unknown
