@@ -120,9 +120,9 @@ rem <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 rem Registry operation finished, beginning to delete "Default Sharing", "Remote IPC", "Remote Admin"
 rem >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-echo.默认共享=net share ^| find /i "默认共享" ^| find /i "$">%pt0%temp.txt
-echo.远程管理=net share ^| find /i "远程管理" ^| find /i "%windir%" ^| find /i "$">>%pt0%temp.txt
-echo.远程 IPC=net share ^| find /i "远程" ^| find /i "IPC" ^| find /i "$" ^| find /i "IPC$">>%pt0%temp.txt
+echo.榛樿鍏变韩=net share ^| find /i "榛樿鍏变韩" ^| find /i "$">%pt0%temp.txt
+echo.杩滅▼绠＄悊=net share ^| find /i "杩滅▼绠＄悊" ^| find /i "%windir%" ^| find /i "$">>%pt0%temp.txt
+echo.杩滅▼ IPC=net share ^| find /i "杩滅▼" ^| find /i "IPC" ^| find /i "$" ^| find /i "IPC$">>%pt0%temp.txt
 echo.Default share=net share ^| find /i "Default share" ^| find /i "$">%pt0%temp.txt
 echo.Remote Admin=net share ^| find /i "Remote Admin" ^| find /i "%windir%" ^| find /i "$">>%pt0%temp.txt
 echo.Remote IPC=net share ^| find /i "Remote" ^| find /i "IPC" ^| find /i "$" ^| find /i "IPC$">>%pt0%temp.txt
