@@ -6,7 +6,6 @@
 if "%~1" == "/?" goto :help
 if "%~1" == "" goto :help
 
-IF "%~1" EQU "" GOTO:EOC
 IF %~1 NEQ 0 ( IF %~1 NEQ 1 (
     GOTO:EOC
 ))
@@ -20,9 +19,10 @@ REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Sy
 :EOC
 GOTO:EOF
 
-:help       -- help informations
+:help       -- Display help informations
 echo/
 echo/%~n0 [0^|1]
 echo/  0^|1: 1 to login with user name and password
 echo/       0 to disable login with user name and password
+echo/
 exit/b
