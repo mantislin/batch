@@ -1,51 +1,61 @@
 @echo off
 
 :: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-:launcher       -- launch the first program[%~1] find in folder[%~2]
-::              -- programExec:     The execute file.
-::              -- programDir:      The directory to search [programExec] in.
+:launcher       -- Start the first [program] find in [path]
 if "%~1" == "/?" call help_end ":help_launcher" ":eo_in_common" "/Q" "0" & exit/b
 if "%~1" == "" call help_end ":help_launcher" ":eo_in_common" "/Q" "0" & exit/b
+
 setlocal enabledelayedexpansion
 
-set "procArch="
-for /f "tokens=* delims=" %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /s /f "PROCESSOR_ARCHITECTURE" /e') do (
-    for /f "tokens=3 delims= " %%b in ("%%a") do (
-        if "!procArch!" == "" set "procArch=%%b"
-    )
-)
-
-set "programExec=%~1"
-set "programDir=%~2"
+set "programExec="
 set "programPath="
+set "modeq=0"
 
-if /i "%procArch%" == "x86" (
-    set "programPath1=%ProgramFiles% (x86)"
-    set "programPath2=%ProgramFiles%"
-) else (
-    set "programPath1=%ProgramFiles%"
-    set "programPath2=%ProgramFiles% (x86)"
+:loop_launcher_1
+if "%~1" == "" goto :done_launcher_1
+if not "%~1" == "" (
+    set "arg1=%~1"
+    if not "!arg1:~0,1!" == "/" (
+
+        if "!programPath!" == "" (
+            set "programPath=!arg1!"
+        ) else if "!programExec!" == "" (
+            set "programExec=!arg1!"
+        )
+
+    ) else (
+        set "arg1=!arg1:~1!"
+        :loop_launcher_1_1
+        if not "!arg1!" == "" (
+            set "chr1=!arg1:~0,1!"
+            set "arg1=!arg1:~1!"
+
+            if /i "!chr1!" == "Q" set "modeQ=1"
+
+            goto :loop_launcher_1_1
+        )
+    )
+    shift
+)
+goto :loop_launcher_1
+:done_launcher_1
+
+if "%programPath%" == "" call help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
+if "%programExec%" == "" goto :help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
+
+for /f "tokens=* delims=" %%a in ('dir/b/s/a-d "%programPath%\%programExec%" 2^>nul') do (
+    start "" "%%a" && ( call eo_in_common /Q /E 0 & exit/b )
 )
 
-call launch "%programPath1%\%programDir%" "%programExec%" && (
-    call eo_in_common /Q /E 0 & exit/b
-)
-call launch "%programPath2%\%programDir%" "%programExec%" && (
-    call eo_in_common /Q /E & exit/b
-)
-
-call eo_in_common /Q /E 0
+call eo_in_common /Q /E 1 & exit/b
 exit/b
 :: -----------------------------------------------------------------------------
-:help_launcher  -- Display help information
+:help_launcher  -- Display help informations
 echo/
-echo/:launcher
-echo/  Launch [specified program] first found [in specified path]
-echo/    %~n0 [program] [folder]
-echo/        program:     The name of the [program] you want to find and launch.
-echo/        folder:      In just this [folder] in ProgramFiles folder %~n0 will
-echo/                     search. If it's not set, %~n0 will search [program] in
-echo/                     [%programfiles%] and [%programfiles% (x86)].
+echo/Launch [program] first found [in specified path]
+echo/  %~n0 [program] [path]
+echo/      program:     The name of the [program] you want to find and launcher.
+echo/      path:        In only this [path] %~n0 will search, shouldn't be empty.
 echo/
 exit/b
 :: <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
