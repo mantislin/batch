@@ -1,3 +1,0 @@
-默认共享=net share | find /i "默认共享" | find /i "$"
-远程管理=net share | find /i "远程管理" | find /i "C:\windows" | find /i "$"
-远程 IPC=net share | find /i "远程" | find /i "IPC" | find /i "$" | find /i "IPC$"
