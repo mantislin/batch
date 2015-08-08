@@ -10,18 +10,22 @@ if "%~1" == "" goto :help
     SETLOCAL ENABLEDELAYEDEXPANSION
 
     for /f "tokens=1-2 delims= " %%x in ('echo %date%') do (
-        for /f "tokens=1-3 delims=:./- " %%a in ('echo %%x') do (
-            if not "%%b" == "" (
-                set "month=%%a"
-                set "day=%%b"
-                set "year=%%c"
+        if "%%x" NEQ "" (
+            for /f "tokens=1-3 delims=:./- " %%a in ('echo %%x') do (
+                if not "%%b" == "" (
+                    set "month=%%a"
+                    set "day=%%b"
+                    set "year=%%c"
+                )
             )
         )
-        for /f "tokens=1-3 delims=:./- " %%a in ('echo %%y') do (
-            if not "%%b" == "" (
-                set "month=%%a"
-                set "day=%%b"
-                set "year=%%c"
+        if "%%y" NEQ "" (
+            for /f "tokens=1-3 delims=:./- " %%a in ('echo %%y') do (
+                if not "%%b" == "" (
+                    set "month=%%a"
+                    set "day=%%b"
+                    set "year=%%c"
+                )
             )
         )
     )
@@ -47,12 +51,31 @@ if "%~1" == "" goto :help
 
     set "vbsname=getadmin_%year%%month%%day%_%hour%%min%%sec%%msec%.vbs"
     echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\%vbsname%"
+
     set params=%*
-    if "%params%" NEQ "" (
-        set params=%params:"=""%
-    )
-    rem echo UAC.ShellExecute "cmd.exe", "/c %params%", "", "runas", 1 >> "%temp%\%vbsname%"
-    echo UAC.ShellExecute "cmd.exe", "/c start """" %params%", "", "runas", 0 >> "%temp%\%vbsname%"
+    if "%params%" NEQ "" set params=%params:"=""%
+
+    rem echo UAC.ShellExecute "cmd.exe", "/c %params%", "", "runas", 0 >> "%temp%\%vbsname%"
+    echo UAC.ShellExecute "cmd.exe", "/c start "" "" %params%", "", "runas", 0 >> "%temp%\%vbsname%"
+
+rem     set execute="%~1"
+rem     set params=
+rem :get_params
+rem if "%~2" == "" goto :eo_get_params
+rem     if "%params%" == "" (
+rem         set params="%~2"
+rem     ) else (
+rem         set params=%params% "%~2"
+rem     )
+rem     shift/2
+rem goto :get_params
+rem :eo_get_params
+rem     if "%execute%" NEQ "" set execute=%execute:"=""%
+rem     if "%params%" NEQ "" set params=%params:"=""%
+rem
+rem     rem echo UAC.ShellExecute "%execute%", "%params%", "", "runas", 0 >> "%temp%\%vbsname%"
+rem     echo UAC.ShellExecute "cmd.exe", "/c start ""%~n0"" %execute% %params%", "", "runas", 0 >> "%temp%\%vbsname%"
+
     "%temp%\%vbsname%"
     set exitCode=%errorlevel%
     del/q/f "%temp%\%vbsname%"

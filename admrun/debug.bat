@@ -1,2 +1,2 @@
-@adminrun.bat "D:\uData\documents\Laboratory\AutoHotKey\mts.ahk"
+@.\admrun.bat "D:\uData\documents\Laboratory\AutoHotKey\mts.ahk"
 pause

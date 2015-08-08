@@ -43,7 +43,9 @@ for /f "usebackq tokens=* eol=;" %%a in ("%config_f%") do (
         )
 
         if !access! equ 1 (
-            if not "!softproc!" == "" ( taskkill /im "!softproc!" /f >nul 2>nul )
+            if not "!softproc!" == "" (
+                taskkill /im !softproc! /f >nul 2>nul
+            )
             pushd "!confpath!" && (
                 call getType "fileType" "!confdir!"
                 if /i not "!fileType!" == "DIR" (
@@ -61,33 +63,6 @@ for /f "usebackq tokens=* eol=;" %%a in ("%config_f%") do (
 
 goto :eoa
 
-set "un=%~1"
-set "dun=shared"
-if "%un%" == "" set "un=%dun%"
-
-if exist "%AppData%\Mozilla\Firefox-%un%" (
-    set "cun="
-    if /i "%un%" == "mts" (
-        set "cun=shared"
-    ) else (
-        set "cun=mts"
-    )
-    pushd "%AppData%\Mozilla"
-    taskkill /im firefox.exe /f >nul 2>nul
-    ren "Firefox" "Firefox-!cun!"
-    ren "Firefox-%un%" "Firefox"
-    popd
-    pushd "%AppData%\..\Local"
-    taskkill /im evernote.exe /f >nul 2>nul
-    ren "Evernote" "Evernote-!cun!"
-    ren "Evernote-%un%" "Evernote"
-    popd
-    pushd "%AppData%\..\Local"
-    taskkill /im chrome.exe /f >nul 2>nul
-    ren "Google" "Google-!cun!"
-    ren "Google-%un%" "Google"
-    popd
-)
 :eoa
 ENDLOCAL
 goto :eof
