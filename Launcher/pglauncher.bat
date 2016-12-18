@@ -1,10 +1,14 @@
 @echo off
 
+:: task list
+:: 1.bug fix, a variable string contains a parenthesis will break the if statement
+:: 2.new feature, record the successful path, use the path first before search for the program at the next time
+
 :: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 :pglauncher     -- launch the first program[%~1] find in folder[%~2]
 ::              -- programExec:     The execute file.
 ::              -- programDir:      The directory to search [programExec] in.
-if "%~1" == "/?" call help_end ":help_pglauncher" ":eo_in_common" "/Q" "0" & exit/b
+if "%~1" == "/?" call help_end ":help_pglauncher" ":eo_in_common" "/Q" "0" & exit/b rem 这里有问题，找不到label
 if "%~1" == "" call help_end ":help_pglauncher" ":eo_in_common" "/Q" "0" & exit/b
 setlocal enabledelayedexpansion
 
@@ -19,22 +23,35 @@ set "programExec=%~1"
 set "programDir=%~2"
 set "programPath="
 
+::notice, please avoid space character in the following variables.
 if /i "%procArch%" == "x86" (
-    set "programPath1=%ProgramFiles% (x86)"
-    set "programPath2=%ProgramFiles%"
+    ::set "programPath1=%ProgramFiles% (x86)"
+    set "programPath1=%systemdrive%\Progra~2"
+    set "programPath2=%program86%"
+    set "programPath3=%ProgramFiles%"
+    set "programPath4=%Program%"
 ) else (
     set "programPath1=%ProgramFiles%"
-    set "programPath2=%ProgramFiles% (x86)"
+    set "programPath2=%program%"
+    ::set "programPath3=%ProgramFiles% (x86)"
+    set "programPath1=%systemdrive%\Progra~2"
+    set "programPath4=%program86%"
 )
 
-call launcher "%programPath1%\%programDir%" "%programExec%" && (
-    call eo_in_common /Q /E 0 & exit/b
+call launcher /S "%programPath1%\%programDir%" "%programExec%" && (
+    call eo_in_common /Q /E & exit/b
 )
-call launcher "%programPath2%\%programDir%" "%programExec%" && (
+call launcher /S "%programPath2%\%programDir%" "%programExec%" && (
+    call eo_in_common /Q /E & exit/b
+)
+call launcher /S "%programPath3%\%programDir%" "%programExec%" && (
+    call eo_in_common /Q /E & exit/b
+)
+call launcher /S "%programPath4%\%programDir%" "%programExec%" && (
     call eo_in_common /Q /E & exit/b
 )
 
-call eo_in_common /Q /E 0
+call eo_in_common /Q /E 1
 exit/b
 :: -----------------------------------------------------------------------------
 :help_pglauncher  -- Display help information

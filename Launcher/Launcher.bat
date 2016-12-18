@@ -7,41 +7,28 @@ rem if "%~1" == "" call :help_end ":help_launcher" ":eo_in_common" "/Q" "0" & ex
 
 setlocal enabledelayedexpansion
 
-set "srchPath=%~1"
-
-set "progPath=%~sdp2"
-set "progExec=%~nx2"
-set "progBase=%~n2"
-set "progExt=%~x2"
-set "progFull=%~2"
-
-:: remove the last backslash
-if "%srchPath:~-1%" == "\" (
-    set "srchPath=%srchPath:~0,-1%"
-)
-if "%progPath:~-1%" == "\" (
-    set "progPath=%progPath:~0,-1%"
-)
-
-shift
-shift
-
 set "modeq=0"
 set "modes=0"
 set "progParams="
 
 :loop_launcher_1
-    set isNon=0
-    if "%~1" == "" (
-        if [%1] == [] set isNon=1
-    )
 
-    if %isNon% equ 1 goto :done_launcher_1
+    if "%~1" == "" goto :done_launcher_1
 
     if /i "%~1" == "/s" (
         set "modes=1"
-    ) else if not "%~1" == "" (
-        if "!progParams!" == "" (
+    ) else if /i "%~1" == "/q" (
+        set "modeq=1"
+    ) else (
+        if "!srchPath!" == "" (
+            set "srchPath=%~1"
+        ) else if "!progFull!" == "" (
+            set "progPath=%~sdp1"
+            set "progExec=%~nx1"
+            set "progBase=%~n1"
+            set "progExt=%~x1"
+            set "progFull=%~1"
+        ) else if "!progParams!" == "" (
             set "progParams=%1"
         ) else (
             set "progParams=!progParams! %1"
@@ -53,16 +40,28 @@ set "progParams="
     goto :loop_launcher_1
 :done_launcher_1
 
+:: remove the last backslash
+if "%srchPath:~-1%" == "\" (
+    set "srchPath=%srchPath:~0,-1%"
+)
+if "%progPath:~-1%" == "\" (
+    set "progPath=%progPath:~0,-1%"
+)
+
 if "%progFull%" == "" call :help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
 
 if "%srchPath%" == "" (
-    :: start with absolute path exe mode.
-    start "" /D "%progPath%" "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+    ::start with absolute path exe mode.
+    echo/%progFull%
+    ::start "" /D "%progPath%" "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+    "%comspec%" /C start "" /D "%progPath%" /B "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
 ) else (
 
     if exist "%srchPath%\%progExec%" (
         :: first detect the top level in %srchPath%
-        start "" /D "%srchPath%" "%progExec%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+        echo/%srcPath%\%progExec%
+        ::start "" /D "%srchPath%" "%progExec%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+        "%comspec%" /C start "" /D "%srchPath%" /B "%progExec%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
     ) else if %modes% equ 1 (
         :: search recursively in %srchpath%
         for /f "tokens=* delims=" %%a in ('dir/b/s/a-d "%srchPath%\%progExec%"') do (
@@ -72,7 +71,9 @@ if "%srchPath%" == "" (
                 set "progPath=!progPath:~0,-1!"
             )
 
-            start "" /D "%progPath%" "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+            echo/%%~a
+            ::start "" /D "!progPath!" "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+            "%comspec%" /C start "" /D "!progPath!" /B "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
         )
     )
 )

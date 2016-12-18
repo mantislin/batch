@@ -40,8 +40,8 @@ if "%~1" == "" goto :help
     set params=%*
     if "%params%" NEQ "" set params=%params:"=""%
 
-    rem echo UAC.ShellExecute "cmd.exe", "/c %params%", "", "runas", 0 >> "%temp%\%vbsname%"
-    echo UAC.ShellExecute "cmd.exe", "/c start "" "" %params%", "", "runas", 0 >> "%temp%\%vbsname%"
+    rem echo UAC.ShellExecute "%comspec%", "/c %params%", "", "runas", 0 >> "%temp%\%vbsname%"
+    echo UAC.ShellExecute "cmd.exe", "/c start """" /d ""%~sdp1"" /b %params%", "", "runas", 0 >> "%temp%\%vbsname%"
 
     "%temp%\%vbsname%"
     set exitCode=%errorlevel%
