@@ -10,28 +10,39 @@ setlocal enabledelayedexpansion
 set "modeq=0"
 set "modes=0"
 set "progParams="
+set "progCount=0"
 
 :loop_launcher_1
 
     if "%~1" == "" goto :done_launcher_1
 
-    if /i "%~1" == "/s" (
-        set "modes=1"
-    ) else if /i "%~1" == "/q" (
-        set "modeq=1"
-    ) else (
-        if "!srchPath!" == "" (
+    set flag0=0
+    if %modes% equ 0 (
+        if /i "%~1" == "/s" set "modes=1"
+        if !modes! equ 1 set flag0=1
+    )
+    if %modeq% equ 0 (
+        if /i "%~1" == "/q" set "modeq=1"
+        if !modeq! equ 1 set flag0=1
+    )
+    if %flag0% equ 0 (
+        set flag1=0
+        set /a progCount=progCount+1
+        if "!progParams!" == "" set flag1=3
+        if "!progFull!" == "" set flag1=2
+        if "!srchPath!" == "" set flag1=1
+        if !flag1! equ 1 (
             set "srchPath=%~1"
-        ) else if "!progFull!" == "" (
+        ) else if !flag1! equ 2 (
             set "progPath=%~sdp1"
             set "progExec=%~nx1"
             set "progBase=%~n1"
             set "progExt=%~x1"
             set "progFull=%~1"
-        ) else if "!progParams!" == "" (
-            set "progParams=%1"
+        ) else if !flag1! equ 3 (
+            set progParams="%~1"
         ) else (
-            set "progParams=!progParams! %1"
+            set progParams=!progParams! "%~1"
         )
     )
 
@@ -39,6 +50,12 @@ set "progParams="
 
     goto :loop_launcher_1
 :done_launcher_1
+
+:: error - no parameters
+if %progCount% equ 0 call :help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
+
+:: error - missing key params
+if "%progFull%" == "" call :help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
 
 :: remove the last backslash
 if "%srchPath:~-1%" == "\" (
@@ -48,20 +65,21 @@ if "%progPath:~-1%" == "\" (
     set "progPath=%progPath:~0,-1%"
 )
 
-if "%progFull%" == "" call :help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
-
+echo/"srchPath=%srchPath%"
 if "%srchPath%" == "" (
-    ::start with absolute path exe mode.
-    echo/%progFull%
-    ::start "" /D "%progPath%" "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
-    "%comspec%" /C start "" /D "%progPath%" /B "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+    ::::start with absolute path exe mode.
+    if exist "%progFull%" (
+        echo/start "" /D "%progPath%" /B "%progFull%" %progParams%
+        start "" /D "%progPath%" /B "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+    ) else (
+        :: error - missing key param
+        call :help_end ":help_launcher" ":eo_in_common" /Q /E 1 & exit/b
+    )
 ) else (
-
     if exist "%srchPath%\%progExec%" (
         :: first detect the top level in %srchPath%
-        echo/%srcPath%\%progExec%
-        ::start "" /D "%srchPath%" "%progExec%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
-        "%comspec%" /C start "" /D "%srchPath%" /B "%progExec%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+        echo/start "" /D "%srchPath%" /B "%progExec%" %progParams%
+        start "" /D "%srchPath%" /B "%progExec%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
     ) else if %modes% equ 1 (
         :: search recursively in %srchpath%
         for /f "tokens=* delims=" %%a in ('dir/b/s/a-d "%srchPath%\%progExec%"') do (
@@ -71,9 +89,8 @@ if "%srchPath%" == "" (
                 set "progPath=!progPath:~0,-1!"
             )
 
-            echo/%%~a
-            ::start "" /D "!progPath!" "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
-            "%comspec%" /C start "" /D "!progPath!" /B "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
+            echo/start "" /D "!progPath!" /B "%progFull%" %progParams%
+            start "" /D "!progPath!" /B "%progFull%" %progParams% && ( call eo_in_common /Q /E 0 & exit/b )
         )
     )
 )
