@@ -1,0 +1,33 @@
+[submodule "admrun.bat"]
+	path = admrun.bat
+	url = git@github.com:mantislin/admrun.bat.git
+[submodule "AppDataConfigsSwitcher.bat"]
+	path = AppDataConfigsSwitcher.bat
+	url = git@github.com:mantislin/AppDataConfigsSwitcher.bat.git
+[submodule "BilibiliFlvToMp4.bat"]
+	path = BilibiliFlvToMp4.bat
+	url = git@github.com:mantislin/BilibiliFlvToMp4.bat.git
+[submodule "cchk.bat"]
+	path = cchk.bat
+	url = git@github.com:mantislin/cchk.bat.git
+[submodule "CleanDefaultShare.bat"]
+	path = CleanDefaultShare.bat
+	url = git@github.com:mantislin/CleanDefaultShare.bat.git
+[submodule "EnvSetter.bat"]
+	path = EnvSetter.bat
+	url = git@github.com:mantislin/EnvSetter.bat.git
+[submodule "Launcher.bat"]
+	path = Launcher.bat
+	url = git@github.com:mantislin/Launcher.bat.git
+[submodule "MyKill.bat"]
+	path = MyKill.bat
+	url = git@github.com:mantislin/MyKill.bat.git
+[submodule "RegSetter.bat"]
+	path = RegSetter.bat
+	url = git@github.com:mantislin/RegSetter.bat.git
+[submodule "StartupJudgeByConnect.bat"]
+	path = StartupJudgeByConnect.bat
+	url = git@github.com:mantislin/StartupJudgeByConnect.bat.git
+[submodule "YoutubeFullHDMixer.bat"]
+	path = YoutubeFullHDMixer.bat
+	url = git@github.com:mantislin/YoutubeFullHDMixer.bat.git
