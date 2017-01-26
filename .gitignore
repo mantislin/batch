@@ -40,7 +40,10 @@ Icon
 .Trashes
 
 # Batch Scripts
-EnvSetter/*.reg
-RegSetter/*.log
-testing-*/link
-testing-*/target
+bin/admrun.bat
+bin/cchk.bat
+bin/eo_in_common.bat
+bin/help_end.bat
+bin/launcher.bat
+bin/pglauncher.bat
+bin/switcher.bat
