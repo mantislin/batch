@@ -260,7 +260,7 @@ goto :eof
         if "!toMove!" == "1" set "toDelete=1"
 
         if not "!toDelete!" == "1" (
-            echo/The link "%link%" already exists, you can:
+            echo/"%link%" has already exists, you can:
             echo/    ^(D^) Delete it
             echo/    ^(M^) Move its content into target and then delete it
             echo/    ^(C^) Cancel this operation
