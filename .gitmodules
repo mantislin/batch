@@ -31,3 +31,6 @@
 [submodule "YoutubeFullHDMixer.bat"]
 	path = YoutubeFullHDMixer.bat
 	url = git@github.com:mantislin/YoutubeFullHDMixer.bat.git
+[submodule "avmix"]
+	path = avmix
+	url = git@github.com:mantislin/avmix.git
